@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RealEstateManager</string>
+    <string name="simulator_title_icon">Simulator</string>
+    <string name="currency_exchange_title_icon">CurrencyExchange</string>
+    <string name="update_title_icon">Update</string>
+    <string name="filters_title_icon">Filters</string>
+    <string name="add_title_icon">Add</string>
 </resources>
