@@ -21,7 +21,6 @@ abstract class RealEstateDatabase : RoomDatabase() {
 
     abstract fun PhotoDao(): PhotoDao
 
-
     companion object {
         @Volatile
         private var INSTANCE: RealEstateDatabase? = null
@@ -38,8 +37,9 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     RealEstateDatabase::class.java,
                     DATABASE_NAME
                 )
-                    .fallbackToDestructiveMigration() // Wipes and rebuilds instead of migrating if no Migration object.
+                    // Wipes and rebuilds instead of migrating if no Migration object.
                     //.addCallback(RealEstateDatabaseCallback(scope))
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
@@ -61,7 +61,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
             // comment out the following line.
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    //deleteDatabase(database.RealEstateDao())  // Clean db for more ez dev
+                    //deleteDatabase(database.RealEstateDao())  // Clean db
                 }
             }
         }
@@ -72,14 +72,6 @@ abstract class RealEstateDatabase : RoomDatabase() {
             realEstateDao.allDelete()
 
         }
-
-
-        /**
-         * Populate the database in a new coroutine.
-         * If you want to start with more words, just add them.
-         */
-
-
     }
 }
 

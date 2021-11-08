@@ -5,4 +5,7 @@
     <string name="update_title_icon">Update</string>
     <string name="filters_title_icon">Filters</string>
     <string name="add_title_icon">Add</string>
+    <string name="item_exemple_price">1,000,000</string>
+    <string name="item_exemple_city">Madrid</string>
+    <string name="item_exemple_type">Castle</string>
 </resources>

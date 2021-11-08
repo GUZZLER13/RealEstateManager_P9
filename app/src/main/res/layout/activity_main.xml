@@ -20,6 +20,6 @@
     <FrameLayout
         android:id="@+id/frame_layout_real_estate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

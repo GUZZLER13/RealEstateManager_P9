@@ -56,7 +56,7 @@ public class Utils {
      * Vérification de la connexion réseau (seulement wifi)
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
      *
-     * @param context
+     * @param
      * @return
      */
     public static Boolean isInternetAvailable(Context context) {

@@ -39,4 +39,11 @@ class MainActivity : AppCompatActivity() {
             idForUpdateIntent = it
         })
     }
+
+    fun showFragments() {
+        val mFragmentRealEstate = RealEstateFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frame_layout_real_estate, mFragmentRealEstate)
+            .commit()
+    }
 }
