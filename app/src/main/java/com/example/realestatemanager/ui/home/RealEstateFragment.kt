@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui
+package com.example.realestatemanager.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,10 +22,11 @@ class RealEstateFragment : Fragment() {
     private lateinit var realEstateBinding: FragmentRealEstateBinding
     private val viewModelFrag: RealEstateViewModel by activityViewModels() {
         RealEstateViewModelFactory(
-            (requireActivity().application as RealEstateApplication).realEstateRepository
+            (requireActivity().application as RealEstateApplication).realEstateRepository,
+            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository
         )
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +46,11 @@ class RealEstateFragment : Fragment() {
             DividerItemDecoration(recyclerView.context, linearLayoutManager.orientation)
         recyclerView.addItemDecoration(dividerItemDecoration)
         realEstateBinding.recyclerviewRealEstate.adapter = adapter
+        viewModelFrag.listRealEstateWithPhoto.observe(
+            viewLifecycleOwner,
+            Observer { listRealEstatesWithPhoto ->
+                listRealEstatesWithPhoto.let { adapter.data = it }
+            })
 
         observeCurrencyCode()
     }

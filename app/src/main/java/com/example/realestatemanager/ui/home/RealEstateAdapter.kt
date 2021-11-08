@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui
+package com.example.realestatemanager.ui.home
 
 import android.content.Context
 import android.os.Environment
@@ -20,7 +20,7 @@ import java.io.File
 class RealEstateAdapter :
     RecyclerView.Adapter<RealEstateAdapter.ViewHolder>() {
     private var indexSelected = -1
-    private var data = listOf<RealEstateWithPhoto>()
+    var data = listOf<RealEstateWithPhoto>()
         set(value) {
             field = value
             notifyDataSetChanged()

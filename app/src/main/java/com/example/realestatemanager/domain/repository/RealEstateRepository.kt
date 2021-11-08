@@ -1,4 +1,4 @@
-package com.example.realestatemanager.domain
+package com.example.realestatemanager.domain.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
