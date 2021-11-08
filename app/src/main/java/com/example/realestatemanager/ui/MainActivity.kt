@@ -1,7 +1,7 @@
-package com.example.realestatemanager
+package com.example.realestatemanager.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.realestatemanager.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
