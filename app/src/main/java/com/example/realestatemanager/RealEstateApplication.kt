@@ -24,7 +24,7 @@ class RealEstateApplication : MultiDexApplication() {
         instance = this
     }
 
-    val database by lazy {
+    private val database by lazy {
         RealEstateDatabase.getDatabase(this)
     }
 

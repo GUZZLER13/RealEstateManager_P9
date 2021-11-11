@@ -15,6 +15,7 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMainBinding
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
+import com.example.realestatemanager.viewmodels.RealEstateViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setNavigationOnClick()
         showFragments()
+        setOnMenuItemClick()
 
     }
 
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun setupToolbar() {
+    private fun setupToolbar() {
         mToolbar = binding.materialToolbar
         setSupportActionBar(mToolbar)
     }
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun setOnMenuItemClick() {
+    private fun setOnMenuItemClick() {
 
         mToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {

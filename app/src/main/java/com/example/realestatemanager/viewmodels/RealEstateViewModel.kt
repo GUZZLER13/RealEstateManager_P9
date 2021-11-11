@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.home
+package com.example.realestatemanager.viewmodels
 
 import androidx.lifecycle.*
 import com.example.realestatemanager.domain.models.RealEstate

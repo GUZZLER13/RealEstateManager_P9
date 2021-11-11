@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.realestatemanager.domain.repository.PhotoRepository
 import com.example.realestatemanager.domain.repository.RealEstateRepository
-import com.example.realestatemanager.ui.home.RealEstateViewModel
+import com.example.realestatemanager.viewmodels.RealEstateViewModel
 
 class RealEstateViewModelFactory(
     private val realEstateRepository: RealEstateRepository,

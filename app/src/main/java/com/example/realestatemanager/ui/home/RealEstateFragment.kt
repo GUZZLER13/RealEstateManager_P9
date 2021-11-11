@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.FragmentRealEstateBinding
+import com.example.realestatemanager.viewmodels.RealEstateViewModel
 
 class RealEstateFragment : Fragment() {
 
