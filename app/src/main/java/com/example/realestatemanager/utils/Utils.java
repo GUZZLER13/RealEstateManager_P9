@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,6 +33,13 @@ public class Utils {
      */
     public static int convertDollarToEuro(int dollars) {
         return (int) Math.round(dollars * Utils.getRate());
+    }
+
+    public static Long getTodayDateInLong(String dateString) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = dateFormat.parse(dateString);
+        assert date != null;
+        return date.getTime();
     }
 
     /**

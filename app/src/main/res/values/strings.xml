@@ -8,4 +8,7 @@
     <string name="item_exemple_price">1,000,000</string>
     <string name="item_exemple_city">Madrid</string>
     <string name="item_exemple_type">Castle</string>
+    <string name="validate">Validate</string>
+    <string name="channel_name">channel name</string>
+    <string name="channel_description">Description of channel</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/size_recycler_width_item_photo"
+    android:layout_height="@dimen/size_recycler_height_item_photo"
+    android:layout_margin="3dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_view_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom"
+        android:background="@color/purple_700"
+        android:textColor="@color/white" />
+
+
+</FrameLayout>
