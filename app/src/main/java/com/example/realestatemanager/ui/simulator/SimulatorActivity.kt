@@ -71,7 +71,6 @@ class SimulatorActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     private fun alertDialogCurrency() {
@@ -81,10 +80,10 @@ class SimulatorActivity : AppCompatActivity() {
             .setNeutralButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
-            .setPositiveButton("OK") { dialog, which ->
+            .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
-            .setSingleChoiceItems(items, checkedItem) { dialog, which ->
+            .setSingleChoiceItems(items, checkedItem) { _, which ->
                 viewModel.setCurrencyCode(which)
             }
             .show()

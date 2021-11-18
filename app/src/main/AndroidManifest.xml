@@ -6,7 +6,6 @@
 
     <application
         android:name=".RealEstateApplication"
-
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,9 +19,6 @@
             android:name=".ui.update.UpdateRealEstateActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.home.NewRealEstateActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -31,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.create.CreateRealEstateActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

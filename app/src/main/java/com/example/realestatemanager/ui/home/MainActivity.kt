@@ -13,6 +13,7 @@ import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMainBinding
+import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
 import com.example.realestatemanager.viewmodels.RealEstateViewModel
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                     //viewModel.insert()
                     val createIntent = Intent(
                         this,
-                        NewRealEstateActivity::class.java
+                        CreateRealEstateActivity::class.java
                     )
                     startActivity(createIntent)
                     true
