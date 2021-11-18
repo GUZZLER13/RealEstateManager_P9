@@ -11,4 +11,5 @@
     <string name="validate">Validate</string>
     <string name="channel_name">channel name</string>
     <string name="channel_description">Description of channel</string>
+    <string name="photo_title">Title Photo</string>
 </resources>

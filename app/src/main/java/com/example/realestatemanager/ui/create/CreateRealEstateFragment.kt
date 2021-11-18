@@ -140,7 +140,7 @@ class CreateRealEstateFragment : Fragment() {
         createBinding.ButtonAdd.setOnClickListener {
             if (validate()) {
                 if (listPhoto.size >= 1) {
-                    if (Utils.isInternetAvailable(requireContext()) || alertDialogNoNetworkSaw) {
+                    if (Utils.CheckInternetConnection(requireContext()) || alertDialogNoNetworkSaw) {
                         if (createInProgress) {
                             createInProgress = false
 

@@ -198,13 +198,13 @@
                 android:layout_height="match_parent"
                 android:gravity="center|top"
                 android:text="Add a picture"
-                android:textAppearance="?attr/textAppearanceHeadline6"></TextView>
+                android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/Button_add_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
+                android:layout_gravity="center|end"
                 android:layout_margin="3dp"
                 app:fabSize="mini"
                 app:srcCompat="@drawable/ic_baseline_photo_24" />
@@ -213,7 +213,7 @@
                 android:id="@+id/Button_add_photo_from_folder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|right|bottom"
+                android:layout_gravity="center|end|bottom"
                 android:layout_margin="3dp"
                 android:drawableBottom="@drawable/ic_baseline_folder_upload_24"
                 app:fabSize="mini"
@@ -223,7 +223,7 @@
                 android:id="@+id/recyclerview_photo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_recycler_height_item_photo"
-                android:layout_gravity="bottom|left"
+                android:layout_gravity="bottom|start"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="55dp"
                 android:orientation="horizontal"
