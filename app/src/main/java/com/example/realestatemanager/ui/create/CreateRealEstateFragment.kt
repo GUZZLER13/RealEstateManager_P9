@@ -59,10 +59,10 @@ class CreateRealEstateFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private var adapter = PhotoAdapter()
-    lateinit var createBinding: FragmentCreateRealEstateBinding
+    private lateinit var createBinding: FragmentCreateRealEstateBinding
     private var alertDialogNoNetworkSaw = false
     private var createInProgress = true
-    private var badAdrresse = false
+    private var badAddress = false
 
     companion object {
         fun newInstance() = CreateRealEstateFragment()
@@ -84,6 +84,7 @@ class CreateRealEstateFragment : Fragment() {
         // Inflate the layout for this fragment
         createBinding = FragmentCreateRealEstateBinding.inflate(inflater, container, false)
         autoFillHints()
+        onClickAdd()
         onClickPhoto()
         onClickPhotoFromFile()
         setupRecyclerView()
@@ -95,7 +96,7 @@ class CreateRealEstateFragment : Fragment() {
         notification = Notification(context)
     }
 
-    fun autoFillHints() { // TODO
+    private fun autoFillHints() { // TODO
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // Not supported above
             createBinding.textFieldAdresse.setAutofillHints(AUTOFILL_HINT_POSTAL_ADDRESS)
             createBinding.textFieldRealEstateAgent.setAutofillHints(AUTOFILL_HINT_NAME)
@@ -135,6 +136,39 @@ class CreateRealEstateFragment : Fragment() {
             .show()
     }
 
+    private fun onClickAdd() {
+        createBinding.ButtonAdd.setOnClickListener {
+            if (validate()) {
+                if (listPhoto.size >= 1) {
+                    if (Utils.isInternetAvailable(requireContext()) || alertDialogNoNetworkSaw) {
+                        if (createInProgress) {
+                            createInProgress = false
+
+                            insertRealEstate()
+                            viewModel.liveData.observe(
+                                viewLifecycleOwner,
+                                { idRealEstate ->
+                                    for (photoItem in listPhoto) {
+                                        val photo = Photo(
+                                            path = photoItem.path,
+                                            label = photoItem.label,
+                                            idProperty = idRealEstate
+                                        )
+                                        viewModel.insertPhoto(photo)
+                                    }
+                                    notificationIfAddCorrectly()
+                                })
+                        }
+                    } else {
+                        alertDialogNoNetwork()
+                    }
+                } else {
+                    alertDialogMinPhoto()
+                }
+            }
+        }
+    }
+
 
     private fun insertRealEstate() {
         val realEstate = RealEstate(
@@ -169,10 +203,10 @@ class CreateRealEstateFragment : Fragment() {
                 createImageFile()
             )
 
-            takePitcure.contract.createIntent(requireContext(), uri).flags =
+            takePicture.contract.createIntent(requireContext(), uri).flags =
                 Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
 
-            takePitcure.launch(uri)
+            takePicture.launch(uri)
         }
     }
 
@@ -182,7 +216,7 @@ class CreateRealEstateFragment : Fragment() {
         }
     }
 
-    private val takePitcure =
+    private val takePicture =
         registerForActivityResult(object : ActivityResultContracts.TakePicture() {
             override fun createIntent(
                 context: Context,
@@ -244,7 +278,7 @@ class CreateRealEstateFragment : Fragment() {
     private fun notificationIfAddCorrectly() { //TODO
         notification.createNotificationChannel()
         notification.buildNotif()
-        if (badAdrresse) {
+        if (badAddress) {
             alertDialogBadAdresseLocation()
         } else {
             startMainActivity()
@@ -259,7 +293,7 @@ class CreateRealEstateFragment : Fragment() {
 
 
     private fun alertDialog() {
-        var editText = EditText(requireContext())
+        val editText = EditText(requireContext())
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
@@ -280,10 +314,6 @@ class CreateRealEstateFragment : Fragment() {
             }
 
             .show()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
 

@@ -5,13 +5,15 @@
     android:id="@+id/constraintlayout_item_realestate"
     android:layout_width="match_parent"
     android:layout_height="125dp"
-    android:layout_margin="3dp">
+    android:layout_margin="3dp"
+    android:background="@color/teal_700">
 
 
     <ImageView
         android:id="@+id/image_realEstate"
         android:layout_width="125dp"
         android:layout_height="match_parent"
+        android:background="@color/teal_700"
         android:contentDescription="TODO"
         android:src="@color/teal_700"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +22,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_realEstate"
@@ -34,6 +35,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/item_exemple_type"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/image_realEstate"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,6 +46,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/item_exemple_city"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/image_realEstate"
             app:layout_constraintTop_toBottomOf="@+id/text_realEstate_type" />
 

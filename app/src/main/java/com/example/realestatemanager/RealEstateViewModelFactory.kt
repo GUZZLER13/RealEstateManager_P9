@@ -22,7 +22,7 @@ class RealEstateViewModelFactory(
             }
             modelClass.isAssignableFrom(CreateRealEstateViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
-                return CreateRealEstateViewModel(realEstateRepository,photoRepository) as T
+                return CreateRealEstateViewModel(realEstateRepository, photoRepository) as T
             }
             modelClass.isAssignableFrom(SimulatorViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
