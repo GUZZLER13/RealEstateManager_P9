@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
         if (!isLargeDisplay) {
-            menu?.findItem(R.id.realestate_update)?.isVisible = false
+            menu.findItem(R.id.realestate_update)?.isVisible = false
         }
         return true;
     }
@@ -139,10 +140,10 @@ class MainActivity : AppCompatActivity() {
             .setNeutralButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
-            .setPositiveButton("OK") { dialog, which ->
+            .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
-            .setSingleChoiceItems(items, checkedItem) { dialog, which ->
+            .setSingleChoiceItems(items, checkedItem) { _, which ->
                 viewModel.setCurrencyCode(which)
             }
             .show()

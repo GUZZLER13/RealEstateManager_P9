@@ -72,4 +72,6 @@ public class Utils {
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
+
+
 }
