@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.create
+package com.example.realestatemanager.fragments
 
 import android.content.ClipData
 import android.content.Context
@@ -31,11 +31,13 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.FragmentCreateRealEstateBinding
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
+import com.example.realestatemanager.recyclerview_adapters.PhotoAdapter
 import com.example.realestatemanager.ui.home.MainActivity
 import com.example.realestatemanager.utils.Notification
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber
 import com.example.realestatemanager.utils.Utils
+import com.example.realestatemanager.viewmodels.CreateRealEstateViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream

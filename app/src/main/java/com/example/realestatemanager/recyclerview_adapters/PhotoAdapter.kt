@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.create
+package com.example.realestatemanager.recyclerview_adapters
 
 import android.os.Environment
 import android.view.LayoutInflater

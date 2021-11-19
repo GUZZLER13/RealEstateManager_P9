@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.home
+package com.example.realestatemanager.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.FragmentRealEstateBinding
+import com.example.realestatemanager.recyclerview_adapters.RealEstateAdapter
 import com.example.realestatemanager.viewmodels.RealEstateViewModel
 
 class RealEstateFragment : Fragment() {

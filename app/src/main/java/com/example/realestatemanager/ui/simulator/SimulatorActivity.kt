@@ -13,7 +13,9 @@ import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivitySimulatorBinding
+import com.example.realestatemanager.fragments.SimulatorFragment
 import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.viewmodels.SimulatorViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SimulatorActivity : AppCompatActivity() {

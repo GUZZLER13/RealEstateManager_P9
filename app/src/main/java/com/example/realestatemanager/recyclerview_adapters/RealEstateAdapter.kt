@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.home
+package com.example.realestatemanager.recyclerview_adapters
 
 import android.content.Context
 import android.os.Environment

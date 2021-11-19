@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.create
+package com.example.realestatemanager.viewmodels
 
 import android.location.Address
 import androidx.lifecycle.MutableLiveData

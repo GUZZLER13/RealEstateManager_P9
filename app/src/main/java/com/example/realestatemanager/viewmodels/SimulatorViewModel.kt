@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.simulator
+package com.example.realestatemanager.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

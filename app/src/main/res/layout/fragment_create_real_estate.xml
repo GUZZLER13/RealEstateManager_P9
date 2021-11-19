@@ -5,7 +5,7 @@
     android:id="@+id/create_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.create.CreateRealEstateFragment">
+    tools:context=".fragments.CreateRealEstateFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

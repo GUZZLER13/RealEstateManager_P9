@@ -13,6 +13,7 @@ import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMainBinding
+import com.example.realestatemanager.fragments.RealEstateFragment
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
@@ -46,17 +47,13 @@ class MainActivity : AppCompatActivity() {
             idObserver()
         }
         setupToolbar()
+        observerCurrencyId()
         setNavigationOnClick()
         showFragments()
         setOnMenuItemClick()
 
     }
 
-    private fun idObserver() {
-        viewModel.liveDataIdRealEstate.observe(this, Observer {
-            idForUpdateIntent = it
-        })
-    }
 
     private fun showFragments() {
         val mFragmentRealEstate = RealEstateFragment()
@@ -65,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun observerCurrencyId() {
+    private fun observerCurrencyId() {
         viewModel.liveDataCurrencyCode.observe(this, Observer {
             checkedItem = it
         })
@@ -149,4 +146,11 @@ class MainActivity : AppCompatActivity() {
             }
             .show()
     }
+
+    private fun idObserver() {
+        viewModel.liveDataIdRealEstate.observe(this, Observer {
+            idForUpdateIntent = it
+        })
+    }
+
 }

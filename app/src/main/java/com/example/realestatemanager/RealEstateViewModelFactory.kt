@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.realestatemanager.domain.repository.PhotoRepository
 import com.example.realestatemanager.domain.repository.RealEstateRepository
-import com.example.realestatemanager.ui.create.CreateRealEstateViewModel
-import com.example.realestatemanager.ui.simulator.SimulatorViewModel
+import com.example.realestatemanager.viewmodels.CreateRealEstateViewModel
+import com.example.realestatemanager.viewmodels.SimulatorViewModel
 import com.example.realestatemanager.viewmodels.RealEstateViewModel
 
 class RealEstateViewModelFactory(

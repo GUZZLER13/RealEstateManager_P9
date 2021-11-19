@@ -7,6 +7,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.databinding.CreateRealEstateBinding
+import com.example.realestatemanager.fragments.CreateRealEstateFragment
 import com.example.realestatemanager.ui.home.MainActivity
 
 

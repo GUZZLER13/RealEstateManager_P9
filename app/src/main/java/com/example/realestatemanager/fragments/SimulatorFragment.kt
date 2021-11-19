@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.simulator
+package com.example.realestatemanager.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,6 +18,7 @@ import com.example.realestatemanager.utils.SimulatorUtils
 import com.example.realestatemanager.utils.TextFieldUtils
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.Utils
+import com.example.realestatemanager.viewmodels.SimulatorViewModel
 import com.google.android.material.slider.Slider
 
 class SimulatorFragment : Fragment() {
