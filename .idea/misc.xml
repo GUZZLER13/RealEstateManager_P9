@@ -7,6 +7,7 @@
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable-v24/ic_baseline_home_24.xml" value="0.340625" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.340625" />
+        <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.5671875" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable/ic_currency_dollar_black_24dp.xml" value="0.5520833333333334" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable/ic_currency_euro_black_24dp.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3307291666666667" />
@@ -17,6 +18,7 @@
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_update_real_estate.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/create_real_estate.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_create_real_estate.xml" value="0.3203125" />
+        <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_details.xml" value="0.546875" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_real_estate.xml" value="0.3104166666666667" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_simulator.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/item_photo.xml" value="0.3203125" />
