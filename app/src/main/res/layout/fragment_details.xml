@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_description_height_details"
             android:layout_margin="3dp"
-            android:hint="Default desicription" />
+            android:hint="Default description" />
 
         <LinearLayout
             android:layout_width="match_parent"
