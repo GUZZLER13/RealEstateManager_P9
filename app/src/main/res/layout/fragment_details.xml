@@ -53,10 +53,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="3dp"
-                android:layout_marginBottom="3dp"
                 android:layout_marginTop="3dp"
-                android:textColor="@color/purple_500"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/purple_500"
                 android:textColorHint="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,11 +93,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_description_height_details"
             android:layout_marginStart="10dp"
-            android:textColor="@color/purple_500"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
-            android:hint="Default description" />
+            android:hint="Default description"
+            android:textColor="@color/purple_500" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,16 +139,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_marginStart="7dp"
-                            android:textColor="@color/purple_500"
                             android:hint="150 000"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textColor="@color/purple_500" />
 
                         <ImageView
                             android:id="@+id/currency"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            app:srcCompat="@drawable/ic_currency_dollar_black_24dp"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            app:srcCompat="@drawable/ic_currency_dollar_black_24dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -175,9 +175,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:textColor="@color/purple_500"
                         android:hint="120"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500" />
 
 
                 </LinearLayout>
@@ -204,10 +204,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:hint="3"
                         android:layout_marginStart="7dp"
-                        android:textColor="@color/purple_500"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:hint="3"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500" />
                 </LinearLayout>
 
 
@@ -233,9 +233,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:textColor="@color/purple_500"
                         android:hint="2"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500" />
                 </LinearLayout>
 
 
@@ -261,9 +261,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:textColor="@color/purple_500"
                         android:hint="3"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500" />
                 </LinearLayout>
 
 
@@ -288,10 +288,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:textColor="@color/purple_500"
                         android:layout_marginStart="5dp"
                         android:hint="15 Cours Victor Hugo, Bordeaux"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -317,9 +317,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:textColor="@color/purple_500"
                         android:hint="Stef DS"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/purple_500" />
                 </LinearLayout>
             </LinearLayout>
 

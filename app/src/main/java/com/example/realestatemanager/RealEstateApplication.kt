@@ -2,9 +2,9 @@ package com.example.realestatemanager
 
 import android.app.Application
 import androidx.multidex.MultiDexApplication
-import com.example.realestatemanager.domain.database.RealEstateDatabase
-import com.example.realestatemanager.domain.repository.PhotoRepository
-import com.example.realestatemanager.domain.repository.RealEstateRepository
+import com.example.realestatemanager.data.database.RealEstateDatabase
+import com.example.realestatemanager.data.repository.PhotoRepository
+import com.example.realestatemanager.data.repository.RealEstateRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
