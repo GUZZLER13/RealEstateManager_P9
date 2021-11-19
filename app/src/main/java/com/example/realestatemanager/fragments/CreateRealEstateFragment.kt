@@ -32,7 +32,7 @@ import com.example.realestatemanager.databinding.FragmentCreateRealEstateBinding
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 import com.example.realestatemanager.recyclerview_adapters.PhotoAdapter
-import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.views.home.MainActivity
 import com.example.realestatemanager.utils.Notification
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber

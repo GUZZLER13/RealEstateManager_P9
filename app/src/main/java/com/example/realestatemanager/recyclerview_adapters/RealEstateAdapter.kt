@@ -1,6 +1,8 @@
 package com.example.realestatemanager.recyclerview_adapters
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,9 +13,12 @@ import com.bumptech.glide.Glide
 import com.example.realestatemanager.R
 import com.example.realestatemanager.databinding.ItemRealestateBinding
 import com.example.realestatemanager.domain.relation.RealEstateWithPhoto
+import com.example.realestatemanager.fragments.DetailsFragment
 import com.example.realestatemanager.utils.Constants.CODE_DOLLAR
 import com.example.realestatemanager.utils.Constants.CODE_EURO
 import com.example.realestatemanager.utils.Utils
+import com.example.realestatemanager.views.details.DetailsActivity
+import com.example.realestatemanager.views.home.MainActivity
 import java.io.File
 
 
@@ -44,6 +49,8 @@ class RealEstateAdapter :
     class ViewHolder(val binding: ItemRealestateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         var context: Context = binding.root.context
+        val mainActivity: MainActivity = context as MainActivity
+
     }
 
 
@@ -82,6 +89,19 @@ class RealEstateAdapter :
         binding.constraintlayoutItemRealestate.setOnClickListener {
             indexSelected = position
             notifyDataSetChanged()
+
+            if (viewHolder.context.resources.getBoolean(R.bool.large_layout)) {
+                val bundle = Bundle()
+                bundle.putLong("idRealEstate", item.realEstate.idRealEstate)
+                viewHolder.mainActivity.supportFragmentManager.beginTransaction()
+                    .add(R.id.frame_layout_2, DetailsFragment::class.java, bundle)
+                    .commit()
+            } else {
+                val intent = Intent(viewHolder.context, DetailsActivity::class.java)
+                intent.putExtra("idRealEstate", item.realEstate.idRealEstate)
+                viewHolder.context.startActivity(intent)
+            }
+
 
         }
         if (indexSelected == position) {

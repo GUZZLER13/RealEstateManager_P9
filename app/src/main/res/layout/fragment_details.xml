@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroll_view_details"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f6efff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +21,10 @@
                 android:id="@+id/materialTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
                 android:hint="Media"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColorHint="@color/black"
@@ -32,7 +36,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="3dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="3dp"
                 android:hint="Publication date :"
                 android:textColorHint="@color/black"
                 android:textStyle="bold"
@@ -58,14 +65,20 @@
             android:id="@+id/recyclerview_photo_details"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_recycler_height_item_photo"
-            android:layout_margin="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal"
             tools:listitem="@layout/item_photo" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:hint="Description"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColorHint="@color/black"
@@ -76,7 +89,10 @@
             android:id="@+id/textView_description"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_description_height_details"
-            android:layout_margin="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:hint="Default description" />
 
         <LinearLayout
@@ -89,7 +105,7 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
-                android:layout_weight="50"
+                android:layout_weight="40"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -146,27 +162,17 @@
                         app:drawableLeftCompat="@drawable/ic_baseline_aspect_ratio_24"
                         app:drawableTint="#000000" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/nb_Surface"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginStart="29dp"
-                            android:hint="120"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                    <TextView
+                        android:id="@+id/nb_Surface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="29dp"
+                        android:hint="120"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginStart="5dp"
-                            android:text="m2"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -180,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Number of rooms"
+                        android:hint="Rooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_room_24"
@@ -207,7 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Number of bathrooms"
+                        android:hint="Bathrooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_bath_24"
@@ -233,7 +239,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Number of bedrooms"
+                        android:hint="Bedrooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 
                         android:textColorHint="@color/black"
@@ -272,9 +278,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginStart="29dp"
+                        android:layout_marginStart="5dp"
                         android:hint="15 Cours Victor Hugo, Bordeaux"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,7 +294,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Real estate Agent"
+                        android:hint="Agent"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_location_on_24"
@@ -307,8 +314,11 @@
             <FrameLayout
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="50">
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="80">
 
                 <fragment
                     android:id="@+id/map_fragment"

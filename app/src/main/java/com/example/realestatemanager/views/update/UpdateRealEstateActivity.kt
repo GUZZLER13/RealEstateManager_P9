@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.update
+package com.example.realestatemanager.views.update
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

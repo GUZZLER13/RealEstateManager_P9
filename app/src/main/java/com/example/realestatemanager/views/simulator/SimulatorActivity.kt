@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.simulator
+package com.example.realestatemanager.views.simulator
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivitySimulatorBinding
 import com.example.realestatemanager.fragments.SimulatorFragment
-import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.views.home.MainActivity
 import com.example.realestatemanager.viewmodels.SimulatorViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 

@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui.create
+package com.example.realestatemanager.views.create
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.databinding.CreateRealEstateBinding
 import com.example.realestatemanager.fragments.CreateRealEstateFragment
-import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.views.home.MainActivity
 
 
 class CreateRealEstateActivity : AppCompatActivity() {

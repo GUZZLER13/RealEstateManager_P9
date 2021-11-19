@@ -1,97 +1,82 @@
-package com.example.realestatemanager.ui.home
+package com.example.realestatemanager.views.details
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
-import com.example.realestatemanager.databinding.ActivityMainBinding
-import com.example.realestatemanager.fragments.RealEstateFragment
-import com.example.realestatemanager.ui.create.CreateRealEstateActivity
-import com.example.realestatemanager.ui.simulator.SimulatorActivity
-import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
-import com.example.realestatemanager.viewmodels.RealEstateViewModel
+import com.example.realestatemanager.databinding.ActivityDetailsBinding
+import com.example.realestatemanager.fragments.DetailsFragment
+import com.example.realestatemanager.views.create.CreateRealEstateActivity
+import com.example.realestatemanager.views.home.MainActivity
+import com.example.realestatemanager.views.update.UpdateRealEstateActivity
+import com.example.realestatemanager.viewmodels.DetailsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class MainActivity : AppCompatActivity() {
 
-    private var idForUpdateIntent: Long? = null
-    private var isLargeDisplay = false
+class DetailsActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
-    private var checkedItem = 0
-
-
-    private val viewModel: RealEstateViewModel by viewModels() {
+    private lateinit var detailbinding: ActivityDetailsBinding
+    private val detailsViewModel: DetailsViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
             photoRepository = (application as RealEstateApplication).photoRepository
         )
     }
-
-    private lateinit var binding: ActivityMainBinding
-
+    private var checkedItem = 0
+    private var idForUpdateIntent: Long? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        isLargeDisplay = resources.getBoolean(R.bool.large_layout)
-        if (isLargeDisplay) {
-            idObserver()
-        }
+        detailbinding = ActivityDetailsBinding.inflate(layoutInflater)
+        val view = detailbinding.root
+        setContentView(view)
         setupToolbar()
+        idObserver()
         observerCurrencyId()
-        setNavigationOnClick()
-        showFragments()
         setOnMenuItemClick()
-
-    }
-
-
-    private fun showFragments() {
-        val mFragmentRealEstate = RealEstateFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.frame_layout_real_estate, mFragmentRealEstate)
-            .commit()
-    }
-
-    private fun observerCurrencyId() {
-        viewModel.liveDataCurrencyCode.observe(this, Observer {
-            checkedItem = it
-        })
+        if (savedInstanceState == null) {
+            val bundle = Bundle()
+            bundle.putLong("idRealEstate", intent.getLongExtra("idRealEstate", 0))
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_details, DetailsFragment::class.java, bundle)
+                .commit()
+        }
     }
 
     private fun setupToolbar() {
-        mToolbar = binding.materialToolbar
+        mToolbar = detailbinding.materialToolbar
+        mToolbar.title = "Details"
         setSupportActionBar(mToolbar)
+        setupBackButton()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
-        if (!isLargeDisplay) {
-            menu.findItem(R.id.realestate_update)?.isVisible = false
-        }
-        return true;
+        menu.findItem(R.id.realestate_filters)?.isVisible = false
+        return true
     }
 
-    private fun setNavigationOnClick() {
+
+    private fun setupBackButton() {
+        mToolbar.navigationIcon =
+            AppCompatResources.getDrawable(this, R.drawable.ic_baseline_arrow_back_24)
         mToolbar.setNavigationOnClickListener {
-            // Handle navigation icon press
-
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
-
 
     private fun setOnMenuItemClick() {
-
         mToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.realestate_add -> {
@@ -103,23 +88,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(createIntent)
                     true
                 }
-                R.id.realestate_filters -> {
-                    true
-                }
                 R.id.realestate_update -> {
-
                     if (idForUpdateIntent != null) {
                         val updateIntent = Intent(this, UpdateRealEstateActivity::class.java)
                         updateIntent.putExtra("idRealEstate", idForUpdateIntent)
                         startActivity(updateIntent)
-                    } else {
-                        Toast.makeText(this, "Please select a property", Toast.LENGTH_LONG).show()
                     }
-                    true
-                }
-                R.id.loan -> {
-                    val loanIntent = Intent(this, SimulatorActivity::class.java)
-                    startActivity(loanIntent)
                     true
                 }
                 R.id.currency -> {
@@ -142,15 +116,21 @@ class MainActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
             .setSingleChoiceItems(items, checkedItem) { _, which ->
-                viewModel.setCurrencyCode(which)
+                detailsViewModel.setCurrencyCode(which)
             }
             .show()
     }
 
-    private fun idObserver() {
-        viewModel.liveDataIdRealEstate.observe(this, Observer {
-            idForUpdateIntent = it
+    private fun observerCurrencyId() {
+        detailsViewModel.liveDataCurrencyCode.observe(this, Observer {
+            checkedItem = it
         })
     }
 
+
+    private fun idObserver() {
+        detailsViewModel.liveDataIdRealEstate.observe(this, Observer {
+            idForUpdateIntent = it
+        })
+    }
 }

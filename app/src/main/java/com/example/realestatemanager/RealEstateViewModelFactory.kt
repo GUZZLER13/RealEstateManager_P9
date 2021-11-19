@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.realestatemanager.domain.repository.PhotoRepository
 import com.example.realestatemanager.domain.repository.RealEstateRepository
 import com.example.realestatemanager.viewmodels.CreateRealEstateViewModel
+import com.example.realestatemanager.viewmodels.DetailsViewModel
 import com.example.realestatemanager.viewmodels.RealEstateViewModel
 import com.example.realestatemanager.viewmodels.SimulatorViewModel
 
@@ -27,6 +28,10 @@ class RealEstateViewModelFactory(
             modelClass.isAssignableFrom(SimulatorViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
                 return SimulatorViewModel(realEstateRepository) as T
+            }
+            modelClass.isAssignableFrom(DetailsViewModel::class.java) -> {
+                @Suppress("UNCHECKED_CAST")
+                return DetailsViewModel(realEstateRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class")
