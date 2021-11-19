@@ -7,17 +7,17 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_view_photo"
         android:layout_width="match_parent"
-        android:src="@color/black"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:src="@color/black" />
 
     <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_gravity="bottom"
-        android:text="@string/photo_title"
-        android:gravity="center"
         android:background="@color/purple_700"
+        android:gravity="center"
+        android:text="@string/photo_title"
         android:textColor="@color/white" />
 
 

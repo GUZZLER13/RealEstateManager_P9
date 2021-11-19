@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/purple_500"
-        app:menu="@menu/top_app_bar"
         android:theme="@style/ToolbarTheme"
-        app:titleTextAppearance="@style/ToolbarTitleText"/>
+        app:menu="@menu/top_app_bar"
+        app:titleTextAppearance="@style/ToolbarTitleText" />
 
 
     <androidx.fragment.app.FragmentContainerView
