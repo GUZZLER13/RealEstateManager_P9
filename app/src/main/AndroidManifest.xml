@@ -45,7 +45,7 @@
             android:windowSoftInputMode="adjustPan" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBD5CWCujhWa9sCDQPHrGFnJUfF0MnFtY4"/>
+            android:value=""/>
 
     </application>
 

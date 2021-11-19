@@ -31,11 +31,13 @@
             android:id="@+id/text_realEstate_type"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_gravity="top"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="@string/item_exemple_type"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="@color/white"
+            android:textColor="@color/purple_500"
+
             app:layout_constraintStart_toEndOf="@+id/image_realEstate"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +48,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/item_exemple_city"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/white"
+            android:textColor="@color/purple_500"
             app:layout_constraintStart_toEndOf="@+id/image_realEstate"
             app:layout_constraintTop_toBottomOf="@+id/text_realEstate_type" />
 
@@ -64,7 +66,7 @@
                 android:layout_marginStart="16dp"
                 android:text="@string/item_exemple_price"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/purple_700" />
+                android:textColor="@color/purple_500" />
 
 
             <ImageView
