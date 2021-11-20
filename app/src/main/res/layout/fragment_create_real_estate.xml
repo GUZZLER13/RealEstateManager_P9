@@ -45,7 +45,7 @@
                 android:layout_gravity="end"
                 android:layout_margin="3dp"
                 android:layout_weight="50"
-                android:hint="Adresse"
+                android:hint="Address"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_add_location_24">
 
@@ -74,7 +74,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textField_nbRooms"
@@ -84,7 +85,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Number of rooms"
+                        android:hint="Rooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_room_24">
 
@@ -120,7 +121,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textField_nbBedrooms"
@@ -130,7 +132,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Number of bedrooms"
+                        android:hint="Bedrooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_bed_24">
 
@@ -149,7 +151,7 @@
                         android:layout_gravity="end"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Number of bathrooms"
+                        android:hint="Bathrooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_bath_24">
 
@@ -207,7 +209,8 @@
                 android:layout_gravity="center|end"
                 android:layout_margin="3dp"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/ic_baseline_photo_24" />
+                app:srcCompat="@drawable/ic_baseline_photo_24"
+                android:contentDescription="TODO" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/Button_add_photo_from_folder"
@@ -217,7 +220,8 @@
                 android:layout_margin="3dp"
                 android:drawableBottom="@drawable/ic_baseline_folder_upload_24"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/ic_baseline_folder_upload_24" />
+                app:srcCompat="@drawable/ic_baseline_folder_upload_24"
+                android:contentDescription="TODO" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_photo"
@@ -237,7 +241,8 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+            android:baselineAligned="false">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField_price"
