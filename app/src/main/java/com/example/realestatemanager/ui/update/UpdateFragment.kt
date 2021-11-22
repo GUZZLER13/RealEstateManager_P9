@@ -36,6 +36,7 @@ import com.example.realestatemanager.ui.home.MainActivity
 import com.example.realestatemanager.utils.PhotoFileUtils
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber
+import com.example.realestatemanager.utils.Utils
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.FileOutputStream
@@ -85,6 +86,8 @@ class UpdateFragment : Fragment() {
         onDateClicked()
         onClickPhoto()
         onClickPhotoFromFile()
+        onValidationClick()
+
         return updateBinding.root
     }
 
@@ -253,7 +256,7 @@ class UpdateFragment : Fragment() {
             .show()
     }
 
-    private fun alertDialogBadAdresseLocation() {
+    private fun alertDialogBadAddressLocation() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("The address is invalid")
             .setMessage("Some functionality such as the display of marker on the map and nearby points of interest will therefore not be available for this property.")
@@ -266,6 +269,39 @@ class UpdateFragment : Fragment() {
                 showDialog = true
             }
             .show()
+    }
+
+    private fun onValidationClick() {
+        updateBinding.ButtonUpdate.setOnClickListener {
+            if (validate()) {
+                if (Utils.checkInternetConnection(requireContext())) {
+                    if (updateBinding.textFieldAdresse.editText?.text.toString() != realEstateActual.realEstate.address) {
+
+                        updateViewModel.liveDataAddress.observe(
+                            viewLifecycleOwner,
+                            Observer { location ->
+                                if (location.isNullOrEmpty()) {
+                                    showDialog = false
+                                    alertDialogBadAddressLocation()
+
+                                } else {
+                                    latlngAddress = location[0]
+
+                                }
+
+                            })
+                    } else {
+                        noUpdatePoiAndLocation()
+                    }
+                } else {
+                    if (!alertDialogNoNetworkSaw) {
+                        alertDialogNoNetwork()
+                    } else {
+                        noUpdatePoiAndLocation()
+                    }
+                }
+            }
+        }
     }
 
 
@@ -315,7 +351,7 @@ class UpdateFragment : Fragment() {
         }
     }
 
-    fun intentMainActivity() {
+    private fun intentMainActivity() {
         val intent = Intent(requireActivity(), MainActivity::class.java)
         startActivity(intent)
     }

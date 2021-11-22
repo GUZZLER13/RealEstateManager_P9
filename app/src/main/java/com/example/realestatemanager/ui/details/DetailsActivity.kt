@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory

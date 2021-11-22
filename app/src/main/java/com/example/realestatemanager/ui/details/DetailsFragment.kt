@@ -120,7 +120,7 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
@@ -282,8 +282,9 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             })
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun onTouchImgView() {
-        detailsBinding.transparentImage.setOnTouchListener { v, event ->
+        detailsBinding.transparentImage.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     // Disallow ScrollView to intercept touch events.

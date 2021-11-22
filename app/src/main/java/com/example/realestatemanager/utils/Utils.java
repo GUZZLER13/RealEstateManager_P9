@@ -28,7 +28,7 @@ public class Utils {
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
      *
-     * @param dollars
+     * @param
      * @return
      */
     public static int convertDollarToEuro(int dollars) {
@@ -36,7 +36,8 @@ public class Utils {
     }
 
     public static Long getTodayDateInLong(String dateString) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = DateFormat.getDateInstance();
         Date date = dateFormat.parse(dateString);
         assert date != null;
         return date.getTime();
@@ -75,7 +76,7 @@ public class Utils {
     /**
      * Vérification complète de la connexion internet
      */
-    public static boolean CheckInternetConnection(Context context) {
+    public static boolean checkInternetConnection(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
