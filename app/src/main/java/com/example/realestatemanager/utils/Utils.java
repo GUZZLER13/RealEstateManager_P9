@@ -36,8 +36,7 @@ public class Utils {
     }
 
     public static Long getTodayDateInLong(String dateString) throws ParseException {
-//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat dateFormat = DateFormat.getDateInstance();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = dateFormat.parse(dateString);
         assert date != null;
         return date.getTime();
