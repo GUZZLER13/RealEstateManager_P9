@@ -15,7 +15,7 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMainBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
-import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
+import com.example.realestatemanager.ui.update.UpdateActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observerCurrencyId() {
-        viewModel.liveDataCurrencyCode.observe(this, Observer {
+        viewModel.liveDataCurrencyCode.observe(this, {
             checkedItem = it
         })
     }
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         if (!isLargeDisplay) {
             menu.findItem(R.id.realestate_update)?.isVisible = false
         }
-        return true;
+        return true
     }
 
     private fun setNavigationOnClick() {
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.realestate_update -> {
 
                     if (idForUpdateIntent != null) {
-                        val updateIntent = Intent(this, UpdateRealEstateActivity::class.java)
+                        val updateIntent = Intent(this, UpdateActivity::class.java)
                         updateIntent.putExtra("idRealEstate", idForUpdateIntent)
                         startActivity(updateIntent)
                     } else {
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun idObserver() {
-        viewModel.liveDataIdRealEstate.observe(this, Observer {
+        viewModel.liveDataIdRealEstate.observe(this, {
             idForUpdateIntent = it
         })
     }

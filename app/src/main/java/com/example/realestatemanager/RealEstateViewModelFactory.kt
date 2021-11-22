@@ -8,6 +8,7 @@ import com.example.realestatemanager.ui.create.CreateRealEstateViewModel
 import com.example.realestatemanager.ui.details.DetailsViewModel
 import com.example.realestatemanager.ui.home.RealEstateViewModel
 import com.example.realestatemanager.ui.simulator.SimulatorViewModel
+import com.example.realestatemanager.ui.update.UpdateViewModel
 
 class RealEstateViewModelFactory(
     private val realEstateRepository: RealEstateRepository,
@@ -32,6 +33,10 @@ class RealEstateViewModelFactory(
             modelClass.isAssignableFrom(DetailsViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
                 return DetailsViewModel(realEstateRepository) as T
+            }
+            modelClass.isAssignableFrom(UpdateViewModel::class.java) -> {
+                @Suppress("UNCHECKED_CAST")
+                return UpdateViewModel(realEstateRepository, photoRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class")

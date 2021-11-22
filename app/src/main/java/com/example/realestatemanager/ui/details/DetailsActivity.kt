@@ -15,7 +15,7 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityDetailsBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.home.MainActivity
-import com.example.realestatemanager.ui.update.UpdateRealEstateActivity
+import com.example.realestatemanager.ui.update.UpdateActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -88,7 +88,7 @@ class DetailsActivity : AppCompatActivity() {
                 }
                 R.id.realestate_update -> {
                     if (idForUpdateIntent != null) {
-                        val updateIntent = Intent(this, UpdateRealEstateActivity::class.java)
+                        val updateIntent = Intent(this, UpdateActivity::class.java)
                         updateIntent.putExtra("idRealEstate", idForUpdateIntent)
                         startActivity(updateIntent)
                     }
@@ -120,14 +120,14 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observerCurrencyId() {
-        detailsViewModel.liveDataCurrencyCode.observe(this, Observer {
+        detailsViewModel.liveDataCurrencyCode.observe(this, {
             checkedItem = it
         })
     }
 
 
     private fun idObserver() {
-        detailsViewModel.liveDataIdRealEstate.observe(this, Observer {
+        detailsViewModel.liveDataIdRealEstate.observe(this, {
             idForUpdateIntent = it
         })
     }
