@@ -56,7 +56,7 @@ class SimulatorActivity : AppCompatActivity() {
         menu.findItem(R.id.realestate_update)?.isVisible = false
         menu.findItem(R.id.realestate_filters)?.isVisible = false
         menu.findItem(R.id.realestate_add)?.isVisible = false
-        menu.findItem(R.id.loan)?.isVisible = false
+        menu.findItem(R.id.simulator)?.isVisible = false
         return true;
     }
 

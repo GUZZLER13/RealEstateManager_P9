@@ -2,6 +2,7 @@ package com.example.realestatemanager.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
@@ -59,7 +60,6 @@ class RealEstateAdapter :
         val item = data[position]
         val binding = viewHolder.binding
 
-
         when (currency) {
             CODE_DOLLAR -> {
                 binding.imageCurrency.setImageDrawable(
@@ -110,6 +110,10 @@ class RealEstateAdapter :
                     R.color.teal_700
                 )
             )
+            viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FFFAFA"))
+            viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FFFAFA"))
+            viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FFFAFA"))
+            viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FFFAFA"))
         } else {
             binding.constraintlayoutItemRealestate.setBackgroundColor(
                 ContextCompat.getColor(
@@ -117,6 +121,10 @@ class RealEstateAdapter :
                     R.color.white
                 )
             )
+            viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FF3700B3"))
+            viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FF3700B3"))
+            viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FF3700B3"))
+            viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
         }
         if (item.photos?.isNotEmpty() == true) {
             val file = File(
@@ -126,6 +134,7 @@ class RealEstateAdapter :
             Glide.with(binding.root)
                 .load(file)
                 .centerCrop()
+                .dontAnimate()
                 .into(binding.imageRealEstate)
         }
     }

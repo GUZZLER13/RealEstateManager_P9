@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_description_height_details">200dp</dimen>
+    <dimen name="size_recycler_height_item_photo">200dp</dimen>
+    <dimen name="size_recycler_width_item_photo">150dp</dimen>
+</resources>

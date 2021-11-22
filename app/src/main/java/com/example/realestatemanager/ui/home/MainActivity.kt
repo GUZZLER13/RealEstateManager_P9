@@ -20,10 +20,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var mFragmentRealEstate: RealEstateFragment
     private var idForUpdateIntent: Long? = null
     private var isLargeDisplay = false
     private lateinit var mToolbar: Toolbar
     private var checkedItem = 0
+    private lateinit var binding: ActivityMainBinding
 
 
     private val viewModel: RealEstateViewModel by viewModels() {
@@ -33,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showFragments() {
-        val mFragmentRealEstate = RealEstateFragment()
+        mFragmentRealEstate = RealEstateFragment()
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout_real_estate, mFragmentRealEstate)
             .commit()
@@ -101,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.realestate_filters -> {
+                    showDialog()
                     true
                 }
                 R.id.realestate_update -> {
@@ -114,9 +116,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
-                R.id.loan -> {
-                    val loanIntent = Intent(this, SimulatorActivity::class.java)
-                    startActivity(loanIntent)
+                R.id.simulator -> {
+                    val simulatorIntent = Intent(this, SimulatorActivity::class.java)
+                    startActivity(simulatorIntent)
                     true
                 }
                 R.id.currency -> {
@@ -125,6 +127,17 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun showDialog() {
+        val fragmentManager = supportFragmentManager
+        val newFragment = FilterDialogFragment()
+        if (isLargeDisplay) {
+            // The device is using a large layout, so show the fragment as a dialog
+            newFragment.show(fragmentManager, "dialog")
+        } else {
+            FilterDialogFragment().show(fragmentManager, "test")
         }
     }
 

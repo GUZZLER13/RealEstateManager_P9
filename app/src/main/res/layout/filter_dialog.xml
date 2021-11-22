@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_surface_min"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Surface minimum"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_aspect_ratio_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_surface_max"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Surface maximum"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_aspect_ratio_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_city"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Region"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_add_location_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_price_min"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Price minimum"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_money_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_price_max"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Price maximum"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_money_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_photo_min"
+            style="@style/TextInputLayout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Number of photos"
+            android:padding="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_photo_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_nearbyRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nearby Restaurant" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_nearbySchool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nearby School" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_nearbyPark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:hint="Nearby Park" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_nearbyStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:hint="Nearby Store" />
+        </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/Button_date_picker"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Publish since"
+            app:icon="@drawable/ic_baseline_calendar_24" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/Button_date_pickerSold"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Sold since"
+            app:icon="@drawable/ic_baseline_calendar_24"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/Button_validation_filter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="3dp"
+            android:text="Validation filter"
+            app:icon="@drawable/ic_baseline_check_24" />
+
+    </LinearLayout>
+
+</ScrollView>

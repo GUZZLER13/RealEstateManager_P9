@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/loan"
+        android:id="@+id/simulator"
         android:icon="@drawable/ic_loan_bank_black_24dp"
         android:title="@string/simulator_title_icon"
         app:showAsAction="always" />
