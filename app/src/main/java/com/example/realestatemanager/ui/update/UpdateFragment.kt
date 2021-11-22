@@ -3,6 +3,7 @@ package com.example.realestatemanager.ui.update
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.location.Address
 import android.net.Uri
 import android.os.Build
@@ -65,6 +66,7 @@ class UpdateFragment : Fragment() {
     private lateinit var uri: Uri
     private var photo = Photo()
     private var listPhoto = ArrayList<Photo>()
+    private var changePhoto = false;
     private var showDialog = true
     private var alertDialogNoNetworkSaw = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +125,7 @@ class UpdateFragment : Fragment() {
         updateBinding.recyclerviewPhotoUpdate.adapter = adapter
     }
 
-    fun setupAdapter() {
+    private fun setupAdapter() {
         adapter = PhotoUpdateAdapter() {
             alertDialogUpdateOrDelete(it)
         }
@@ -135,6 +137,7 @@ class UpdateFragment : Fragment() {
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
+
                 R.color.white
             )
         )
@@ -146,12 +149,14 @@ class UpdateFragment : Fragment() {
                     photo.label = editText.text.toString()
                     photo.idProperty = realEstateActual.realEstate.idRealEstate
                     updateViewModel.updatePhoto(photo)
+                    changePhoto = true
                     dialog.dismiss()
                 }
             }
             .setNegativeButton("Delete") { dialog, _ ->
                 if (realEstateActual.photos?.size!! > 1) {
                     updateViewModel.deletePhoto(photo)
+                    changePhoto = true
                     dialog.dismiss()
                 } else {
                     Toast.makeText(
@@ -238,7 +243,7 @@ class UpdateFragment : Fragment() {
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
-                R.color.white
+                isDark()
             )
         )
         MaterialAlertDialogBuilder(requireContext())
@@ -250,6 +255,7 @@ class UpdateFragment : Fragment() {
                     photo.idProperty = realEstateActual.realEstate.idRealEstate
                     updateViewModel.insertPhoto(photo)
                     photo = Photo()
+                    changePhoto = true
                     dialog.dismiss()
                 }
             }
@@ -302,6 +308,7 @@ class UpdateFragment : Fragment() {
                 }
             }
         }
+        changePhoto = false
     }
 
 
@@ -337,13 +344,20 @@ class UpdateFragment : Fragment() {
             dateSold = dateSold(),
             realEstateAgent = realEstateActual.realEstate.realEstateAgent,
             latitude = latlngAddress?.latitude?.toFloat(),
-            longitude = latlngAddress?.longitude?.toFloat(),
+            longitude = latlngAddress?.longitude?.toFloat()
+        )
 
-            )
-        if (realEstateActual.realEstate == realEstateToUpdate) {
+        //Changement de la bannière sous la photo : sold / to sale
+        if (dateSelectedSold != null && !realEstateActual.realEstate.propertyStatus) {
+            realEstateToUpdate.propertyStatus = true
+        } else realEstateToUpdate.propertyStatus = realEstateActual.realEstate.propertyStatus
+
+        //Si aucune modif n'a été faite ---> message
+        if (realEstateActual.realEstate == realEstateToUpdate && !changePhoto) {
             Toast.makeText(requireContext(), "No modification", Toast.LENGTH_LONG)
                 .show()
         } else {
+            //Sinon on update le realEstate et on revient sur MainActivity
             updateViewModel.updateRealEstate(realEstateToUpdate)
             if (showDialog) {
                 intentMainActivity()
@@ -417,4 +431,20 @@ class UpdateFragment : Fragment() {
             }
             .show()
     }
+
+    private fun isDark(): Int {
+        when (context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                return R.color.white
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                return R.color.black
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                return R.color.black
+            }
+        }
+        return 1
+    }
+
 }

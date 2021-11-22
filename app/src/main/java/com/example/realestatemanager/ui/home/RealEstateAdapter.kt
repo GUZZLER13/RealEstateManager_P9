@@ -137,6 +137,17 @@ class RealEstateAdapter :
                 .dontAnimate()
                 .into(binding.imageRealEstate)
         }
+
+        if (item.realEstate.propertyStatus) {
+            binding.textImageRealEstate.setBackgroundResource(R.color.red)
+            binding.textImageRealEstate.text = "SOLD"
+        } else {
+            binding.textImageRealEstate.setBackgroundResource(R.color.green)
+            binding.textImageRealEstate.text = "FOR SALE"
+
+        }
+
+
     }
 }
 
