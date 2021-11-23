@@ -13,6 +13,7 @@ import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMainBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
+import com.example.realestatemanager.ui.map.MapActivity
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.example.realestatemanager.ui.update.UpdateActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         mToolbar = binding.materialToolbar
+        mToolbar.title = "R.E.Manager"
         setSupportActionBar(mToolbar)
     }
 
@@ -91,6 +93,15 @@ class MainActivity : AppCompatActivity() {
 
         mToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.realestate_map -> {
+                    //viewModel.insert()
+                    val createIntent = Intent(
+                        this,
+                        MapActivity::class.java
+                    )
+                    startActivity(createIntent)
+                    true
+                }
                 R.id.realestate_add -> {
                     //viewModel.insert()
                     val createIntent = Intent(

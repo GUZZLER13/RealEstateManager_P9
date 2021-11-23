@@ -19,6 +19,7 @@
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout-w600dp/activity_main.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_details.xml" value="0.546875" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_main.xml" value="0.3104166666666667" />
+        <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_map.xml" value="0.546875" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_new_real_estate.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_simulator.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/activity_update.xml" value="0.3203125" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/filter_dialog.xml" value="0.546875" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_create_real_estate.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_details.xml" value="0.546875" />
+        <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_map.xml" value="0.5598958333333334" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_real_estate.xml" value="0.3104166666666667" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/fragment_simulator.xml" value="0.3203125" />
         <entry key="..\:/Users/steph/Desktop/PROJET_9/monProjet9/RealEstateManager_P9/app/src/main/res/layout/item_photo.xml" value="0.3203125" />

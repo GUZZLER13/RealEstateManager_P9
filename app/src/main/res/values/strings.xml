@@ -12,4 +12,5 @@
     <string name="channel_name">channel name</string>
     <string name="channel_description">Description of channel</string>
     <string name="photo_title">Title Photo</string>
+    <string name="map_icon">map_icon</string>
 </resources>

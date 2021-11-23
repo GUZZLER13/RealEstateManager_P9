@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/realestate_map"
+        android:icon="@drawable/baseline_map_24"
+        android:title="@string/map_icon"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/simulator"
         android:icon="@drawable/ic_loan_bank_black_24dp"
         android:title="@string/simulator_title_icon"

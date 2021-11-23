@@ -28,6 +28,9 @@
             android:name=".ui.simulator.SimulatorActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.map.MapActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.update.UpdateActivity"
             android:exported="true" />
         <activity

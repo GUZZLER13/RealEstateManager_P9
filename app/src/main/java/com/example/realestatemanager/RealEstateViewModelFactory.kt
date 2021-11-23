@@ -7,6 +7,7 @@ import com.example.realestatemanager.data.repository.RealEstateRepository
 import com.example.realestatemanager.ui.create.CreateRealEstateViewModel
 import com.example.realestatemanager.ui.details.DetailsViewModel
 import com.example.realestatemanager.ui.home.RealEstateViewModel
+import com.example.realestatemanager.ui.map.MapViewModel
 import com.example.realestatemanager.ui.simulator.SimulatorViewModel
 import com.example.realestatemanager.ui.update.UpdateViewModel
 
@@ -37,6 +38,10 @@ class RealEstateViewModelFactory(
             modelClass.isAssignableFrom(UpdateViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
                 return UpdateViewModel(realEstateRepository, photoRepository) as T
+            }
+            modelClass.isAssignableFrom(MapViewModel::class.java) -> {
+                @Suppress("UNCHECKED_CAST")
+                return MapViewModel(realEstateRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class")
