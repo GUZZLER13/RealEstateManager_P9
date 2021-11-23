@@ -36,8 +36,8 @@ class PhotoAdapter :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = data[position]
         viewHolder.bind(item)
-    }
 
+    }
 
     class ViewHolder(val binding: ItemPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Photo) {
@@ -53,6 +53,7 @@ class PhotoAdapter :
                 .dontAnimate()// For photo display correctly
                 .into(binding.imgViewPhoto)
         }
+
     }
 
     override fun getItemCount() = data.size

@@ -76,9 +76,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
-        if (!isLargeDisplay) {
-            menu.findItem(R.id.realestate_update)?.isVisible = false
-        }
+        menu.findItem(R.id.realestate_update)?.isVisible = false
         return true
     }
 

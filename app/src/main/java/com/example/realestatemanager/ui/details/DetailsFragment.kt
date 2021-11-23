@@ -2,7 +2,6 @@ package com.example.realestatemanager.ui.details
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Looper
@@ -252,14 +251,14 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
 
-    fun updateDateEntry(realEstate: RealEstate): String {
-        var dateFormat = getDateInstance()
+    private fun updateDateEntry(realEstate: RealEstate): String {
+        val dateFormat = getDateInstance()
         val date = Date(realEstate.dateEntry)
         return dateFormat.format(date)
     }
 
-    fun updateDateSold(realEstate: RealEstate): String {
-        var dateFormat = getDateInstance()
+    private fun updateDateSold(realEstate: RealEstate): String {
+        val dateFormat = getDateInstance()
         if (realEstate.dateSold != null) {
             val date = Date(realEstate.dateSold!!)
             return dateFormat.format(date)
@@ -322,11 +321,6 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 else -> true
             }
         }
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
     }
 
     override fun onResume() {

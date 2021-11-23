@@ -14,6 +14,8 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityDetailsBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.ui.map.MapActivity
+import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.example.realestatemanager.ui.update.UpdateActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -76,8 +78,20 @@ class DetailsActivity : AppCompatActivity() {
     private fun setOnMenuItemClick() {
         mToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.simulator -> {
+                    val simulatorIntent = Intent(this, SimulatorActivity::class.java)
+                    startActivity(simulatorIntent)
+                    true
+                }
+                R.id.realestate_map -> {
+                    val createIntent = Intent(
+                        this,
+                        MapActivity::class.java
+                    )
+                    startActivity(createIntent)
+                    true
+                }
                 R.id.realestate_add -> {
-                    //viewModel.insert()
                     val createIntent = Intent(
                         this,
                         CreateRealEstateActivity::class.java

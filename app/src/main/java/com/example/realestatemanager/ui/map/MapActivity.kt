@@ -14,7 +14,7 @@ import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.ActivityMapBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.home.MainActivity
-import com.example.realestatemanager.ui.update.UpdateActivity
+import com.example.realestatemanager.ui.simulator.SimulatorActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -51,6 +51,7 @@ class MapActivity : AppCompatActivity() {
         mToolbar = mapbinding.materialToolbar
         mToolbar.title = "Map"
         setSupportActionBar(mToolbar)
+        setOnMenuItemClick()
         setupBackButton()
     }
 
@@ -59,6 +60,10 @@ class MapActivity : AppCompatActivity() {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
         menu.findItem(R.id.realestate_filters)?.isVisible = false
+        menu.findItem(R.id.realestate_update)?.isVisible = false
+        menu.findItem(R.id.currency)?.isVisible = false
+        menu.findItem(R.id.realestate_map)?.isVisible = false
+
         return true
     }
 
@@ -85,18 +90,12 @@ class MapActivity : AppCompatActivity() {
                     startActivity(createIntent)
                     true
                 }
-                R.id.realestate_update -> {
-                    if (idForUpdateIntent != null) {
-                        val updateIntent = Intent(this, UpdateActivity::class.java)
-                        updateIntent.putExtra("idRealEstate", idForUpdateIntent)
-                        startActivity(updateIntent)
-                    }
+                R.id.simulator -> {
+                    val simulatorIntent = Intent(this, SimulatorActivity::class.java)
+                    startActivity(simulatorIntent)
                     true
                 }
-                R.id.currency -> {
-                    alertDialogCurrency()
-                    true
-                }
+
                 else -> false
             }
         }

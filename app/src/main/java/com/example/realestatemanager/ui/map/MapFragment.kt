@@ -2,7 +2,6 @@ package com.example.realestatemanager.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Looper
@@ -156,7 +155,6 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         savedInstanceState: Bundle?
     ): View {
         mapBinding = FragmentMapBinding.inflate(inflater, container, false)
-//        updateUi()
         requestPermissions()
         onTouchImgView()
         return mapBinding.root
@@ -211,10 +209,6 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 
     override fun onResume() {
         super.onResume()
