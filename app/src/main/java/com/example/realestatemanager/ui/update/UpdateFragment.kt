@@ -65,8 +65,7 @@ class UpdateFragment : Fragment() {
     private var dateSelectedSold: Long? = null
     private lateinit var uri: Uri
     private var photo = Photo()
-    private var listPhoto = ArrayList<Photo>()
-    private var changePhoto = false;
+    private var changePhoto = false
     private var showDialog = true
     private var alertDialogNoNetworkSaw = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,7 +136,6 @@ class UpdateFragment : Fragment() {
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
-
                 R.color.white
             )
         )
@@ -175,7 +173,7 @@ class UpdateFragment : Fragment() {
     }
 
 
-    private val takePitcure =
+    private val takePicture =
         registerForActivityResult(object : ActivityResultContracts.TakePicture() {
             override fun createIntent(
                 context: Context,
@@ -188,8 +186,8 @@ class UpdateFragment : Fragment() {
                 }
                 return intent
             }
-        }) { sucess ->
-            if (sucess) {
+        }) { success ->
+            if (success) {
                 val nameFile: Int
                 uri.let {
                     requireContext().contentResolver.query(uri, null, null, null, null)
@@ -234,7 +232,7 @@ class UpdateFragment : Fragment() {
                 BuildConfig.APPLICATION_ID + ".provider",
                 PhotoFileUtils.createImageFile(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES))
             )
-            takePitcure.launch(uri)
+            takePicture.launch(uri)
         }
     }
 
@@ -350,7 +348,16 @@ class UpdateFragment : Fragment() {
         //Changement de la bannière sous la photo : sold / to sale
         if (dateSelectedSold != null && !realEstateActual.realEstate.propertyStatus) {
             realEstateToUpdate.propertyStatus = true
-        } else realEstateToUpdate.propertyStatus = realEstateActual.realEstate.propertyStatus
+
+        } else {
+            realEstateToUpdate.propertyStatus = realEstateActual.realEstate.propertyStatus
+        }
+
+        //Ne pas update à vide la date de vente si une modif est faite sur autre chose ---> garder la date de vente actuelle
+        if (realEstateActual.realEstate.propertyStatus && realEstateActual.realEstate.dateSold != null) {
+            realEstateToUpdate.dateSold = realEstateActual.realEstate.dateSold
+        }
+
 
         //Si aucune modif n'a été faite ---> message
         if (realEstateActual.realEstate == realEstateToUpdate && !changePhoto) {
@@ -372,15 +379,19 @@ class UpdateFragment : Fragment() {
 
     private fun onDateClicked() {
         updateBinding.ButtonDatePicker.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            datePicker.show(fragmentManager, "DatePicker")
-            datePicker.addOnPositiveButtonClickListener { selection: Long ->
-                dateSelectedSold = Date(selection).time
+
+            if (!realEstateActual.realEstate.propertyStatus) {
+                val fragmentManager = parentFragmentManager
+                datePicker.show(fragmentManager, "DatePicker")
+                datePicker.addOnPositiveButtonClickListener { selection: Long ->
+                    dateSelectedSold = Date(selection).time
+                }
+            } else {
+                Toast.makeText(requireContext(), "The property is already sold", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }
-
-    private fun dateSold(): Long? = dateSelectedSold
 
     private fun validate(): Boolean {
         var check = true
@@ -446,5 +457,7 @@ class UpdateFragment : Fragment() {
         }
         return 1
     }
+
+    private fun dateSold(): Long? = dateSelectedSold
 
 }

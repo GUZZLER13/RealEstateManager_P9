@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -36,7 +37,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
-
 import java.text.DateFormat.getDateInstance
 import java.util.*
 
@@ -204,7 +204,16 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 currencySwitchAndDisplay()
                 detailsBinding.textViewAgent.text = realEstateWithPhoto.realEstate.realEstateAgent
                 detailsBinding.twPropertyPublicationDate.text =
-                    updateDate(realEstate = realEstateWithPhoto.realEstate)
+                    updateDateEntry(realEstate = realEstateWithPhoto.realEstate)
+                if (!realEstateWithPhoto.realEstate.propertyStatus) {
+                    detailsBinding.sold.isVisible = false
+                } else {
+                    detailsBinding.sold.isVisible = true
+                    if (realEstateWithPhoto.realEstate.dateSold != null) {
+                        detailsBinding.twPropertySoldDate.text =
+                            updateDateSold(realEstate = realEstateWithPhoto.realEstate)
+                    }
+                }
                 adapter.data = realEstateWithPhoto.photos!!
             })
     }
@@ -243,10 +252,19 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
 
-    fun updateDate(realEstate: RealEstate): String {
+    fun updateDateEntry(realEstate: RealEstate): String {
         var dateFormat = getDateInstance()
         val date = Date(realEstate.dateEntry)
         return dateFormat.format(date)
+    }
+
+    fun updateDateSold(realEstate: RealEstate): String {
+        var dateFormat = getDateInstance()
+        if (realEstate.dateSold != null) {
+            val date = Date(realEstate.dateSold!!)
+            return dateFormat.format(date)
+        }
+        return ""
     }
 
     private fun setupRecyclerView() {

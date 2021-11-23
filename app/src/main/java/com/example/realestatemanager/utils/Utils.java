@@ -60,6 +60,11 @@ public class Utils {
         return dateFormat.format(new Date());
     }
 
+    public static String getDate(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
     /**
      * Vérification de la connexion réseau (seulement wifi)
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
