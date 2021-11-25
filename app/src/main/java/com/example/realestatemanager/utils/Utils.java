@@ -35,8 +35,8 @@ public class Utils {
         return (int) Math.round(dollars * Utils.getRate());
     }
 
-    public static Long getTodayDateInLong(String dateString) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static Long getDateInLong(String dateString) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
         Date date = dateFormat.parse(dateString);
         assert date != null;
         return date.getTime();
@@ -58,11 +58,6 @@ public class Utils {
     public static String getTodayDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
         return dateFormat.format(new Date());
-    }
-
-    public static String getDate(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
-        return dateFormat.format(date);
     }
 
     /**

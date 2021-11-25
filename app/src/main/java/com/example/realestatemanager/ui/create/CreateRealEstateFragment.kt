@@ -33,6 +33,7 @@ import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 import com.example.realestatemanager.ui.details.PhotoAdapter
 import com.example.realestatemanager.ui.home.MainActivity
+import com.example.realestatemanager.utils.Constants
 import com.example.realestatemanager.utils.Notification
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber
@@ -64,6 +65,9 @@ class CreateRealEstateFragment : Fragment() {
     private var alertDialogNoNetworkSaw = false
     private var createInProgress = true
     private var badAddress = false
+    private var currencyCode = 0
+    private var realEstate: RealEstate? = null
+
 
     companion object {
         fun newInstance() = CreateRealEstateFragment()
@@ -89,6 +93,8 @@ class CreateRealEstateFragment : Fragment() {
         onClickPhoto()
         onClickPhotoFromFile()
         setupRecyclerView()
+        observeCurrency()
+
         return createBinding.root
     }
 
@@ -172,28 +178,60 @@ class CreateRealEstateFragment : Fragment() {
 
 
     private fun insertRealEstate() {
-        val realEstate = RealEstate(
-            type = createBinding.textFieldType.editText?.text.toString(),
-            price = createBinding.textFieldPrice.editText?.text.toString()
-                .toInt(),
-            surface = createBinding.textFieldSurface.editText?.text.toString()
-                .toInt(),
-            nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
-                .toInt(),
-            nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
-                .toInt(),
-            nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
-                .toInt(),
-            description = createBinding.textFieldDescription.editText?.text.toString(),
-            address = createBinding.textFieldAdresse.editText?.text.toString(),
-            propertyStatus = false,
-            dateEntry = Utils.getTodayDateInLong(Utils.getTodayDate()),
-            dateSold = null,
-            realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
-            latitude = latlng?.latitude?.toFloat(),
-            longitude = latlng?.longitude?.toFloat()
-        )
-        viewModel.insertRealEstate(realEstate)
+        when (currencyCode) {
+            Constants.CODE_DOLLAR -> {
+                val realEstate = RealEstate(
+                    type = createBinding.textFieldType.editText?.text.toString(),
+                    price = createBinding.textFieldPrice.editText?.text.toString()
+                        .toInt(),
+                    surface = createBinding.textFieldSurface.editText?.text.toString()
+                        .toInt(),
+                    nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
+                        .toInt(),
+                    nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
+                        .toInt(),
+                    nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
+                        .toInt(),
+                    description = createBinding.textFieldDescription.editText?.text.toString(),
+                    address = createBinding.textFieldAdresse.editText?.text.toString(),
+                    propertyStatus = false,
+                    dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
+                    dateSold = null,
+                    realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
+                    latitude = latlng?.latitude?.toFloat(),
+                    longitude = latlng?.longitude?.toFloat()
+                )
+                viewModel.insertRealEstate(realEstate)
+            }
+
+            Constants.CODE_EURO -> {
+                val realEstate = RealEstate(
+                    type = createBinding.textFieldType.editText?.text.toString(),
+                    price = Utils.convertEurosToDollars(
+                        createBinding.textFieldPrice.editText?.text.toString()
+                            .toInt()
+                    ),
+                    surface = createBinding.textFieldSurface.editText?.text.toString()
+                        .toInt(),
+                    nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
+                        .toInt(),
+                    nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
+                        .toInt(),
+                    nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
+                        .toInt(),
+                    description = createBinding.textFieldDescription.editText?.text.toString(),
+                    address = createBinding.textFieldAdresse.editText?.text.toString(),
+                    propertyStatus = false,
+                    dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
+                    dateSold = null,
+                    realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
+                    latitude = latlng?.latitude?.toFloat(),
+                    longitude = latlng?.longitude?.toFloat()
+                )
+
+                viewModel.insertRealEstate(realEstate)
+            }
+        }
     }
 
     private fun onClickPhoto() {
@@ -379,4 +417,28 @@ class CreateRealEstateFragment : Fragment() {
         return check
     }
 
+    private fun currencyIconSwitchAndDisplay() {
+        when (currencyCode) {
+            Constants.CODE_DOLLAR -> {
+                createBinding.textFieldPrice.startIconDrawable = AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_currency_dollar_black_24dp
+                )
+            }
+            Constants.CODE_EURO -> {
+                createBinding.textFieldPrice.startIconDrawable = AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_currency_euro_black_24dp
+                )
+            }
+        }
+    }
+
+    private fun observeCurrency() {
+        viewModel.liveDataCurrencyCode.observe(viewLifecycleOwner, Observer {
+            currencyCode = it
+            currencyIconSwitchAndDisplay()
+
+        })
+    }
 }

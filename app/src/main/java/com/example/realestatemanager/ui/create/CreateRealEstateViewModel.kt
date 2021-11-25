@@ -1,6 +1,7 @@
 package com.example.realestatemanager.ui.create
 
 import android.location.Address
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,6 +28,13 @@ class CreateRealEstateViewModel(
     val liveDataValidation by lazy {
         MutableLiveData<Long>()
     }
+
+    fun setCurrencyCode(currencyId: Int) {
+        realEstateRepository.setCurrencyCode(currencyId = currencyId)
+    }
+
+    val liveDataCurrencyCode: LiveData<Int> = realEstateRepository.getCurrencyCode()
+
 
     val liveDataListPhoto by lazy {
         MutableLiveData<ArrayList<Photo>>()

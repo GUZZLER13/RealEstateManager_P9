@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         setNavigationOnClick()
         showFragments()
         setOnMenuItemClick()
-
     }
 
 
@@ -65,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.liveDataCurrencyCode.observe(this, {
             checkedItem = it
         })
+
     }
 
     private fun setupToolbar() {
