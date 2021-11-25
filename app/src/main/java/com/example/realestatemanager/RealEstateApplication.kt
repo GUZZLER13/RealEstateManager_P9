@@ -22,14 +22,14 @@ class RealEstateApplication : MultiDexApplication() {
     }
 
     private val database by lazy {
-        RealEstateDatabase.getDatabase(this)
+        RealEstateDatabase.getDatabase(this, applicationScope)
     }
 
     val photoRepository by lazy { PhotoRepository(database.PhotoDao()) }
     val realEstateRepository by lazy { RealEstateRepository(database.RealEstateDao()) }
 
     // No need to cancel this scope as it'll be torn down with the process
-    val applicationScope = CoroutineScope(SupervisorJob())
+    private val applicationScope = CoroutineScope(SupervisorJob())
 
     val geocoderRepository by lazy { GeocoderRepository(context = instance) }
 

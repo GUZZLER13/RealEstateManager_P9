@@ -59,6 +59,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <provider
+            android:authorities="com.example.realestatemanager.domain.provider"
+            android:name=".domain.provider.RealEstateContentProvider"
+            android:exported="true" />
 
     </application>
 

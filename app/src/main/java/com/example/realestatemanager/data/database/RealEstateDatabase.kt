@@ -9,6 +9,7 @@ import com.example.realestatemanager.data.dao.RealEstateDao
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 import com.example.realestatemanager.utils.Constants.DATABASE_NAME
+import kotlinx.coroutines.CoroutineScope
 
 
 @Database(entities = [RealEstate::class, Photo::class], version = 100, exportSchema = false)
@@ -23,7 +24,8 @@ abstract class RealEstateDatabase : RoomDatabase() {
 
 
         fun getDatabase(
-            context: Context
+            context: Context,
+            scope: CoroutineScope
         ): RealEstateDatabase {
 
             return INSTANCE ?: synchronized(this) {
