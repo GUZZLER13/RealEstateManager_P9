@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.CreateRealEstateBinding
 import com.example.realestatemanager.ui.home.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -22,7 +23,9 @@ class CreateRealEstateActivity : AppCompatActivity() {
     private val viewModel: CreateRealEstateViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository
+            photoRepository = (application as RealEstateApplication).photoRepository,
+            // ?????????????????????
+            GeocoderRepository(context = applicationContext)
         )
     }
     private var checkedItem = 0

@@ -1,6 +1,8 @@
 package com.example.realestatemanager.ui.details
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.ActivityDetailsBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.home.MainActivity
@@ -26,7 +29,8 @@ class DetailsActivity : AppCompatActivity() {
     private val detailsViewModel: DetailsViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository
+            photoRepository = (application as RealEstateApplication).photoRepository,
+            GeocoderRepository(context = applicationContext)
         )
     }
     private var checkedItem = 0
@@ -40,6 +44,7 @@ class DetailsActivity : AppCompatActivity() {
         idObserver()
         observerCurrencyId()
         setOnMenuItemClick()
+        isDark()
         if (savedInstanceState == null) {
             val bundle = Bundle()
             bundle.putLong("idRealEstate", intent.getLongExtra("idRealEstate", 0))
@@ -144,4 +149,22 @@ class DetailsActivity : AppCompatActivity() {
             idForUpdateIntent = it
         })
     }
+//    android:background="#ededed"
+
+    private fun isDark() {
+        when (applicationContext?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                detailbinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#C0C0C0"))
+
+
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                detailbinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#ededed"))
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+            }
+        }
+
+    }
+
 }

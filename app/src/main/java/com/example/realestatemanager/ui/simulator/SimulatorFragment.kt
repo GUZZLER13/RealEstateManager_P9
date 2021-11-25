@@ -33,6 +33,7 @@ class SimulatorFragment : Fragment() {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
+            (requireActivity().application as RealEstateApplication).geocoderRepository
         )
     }
 
@@ -48,7 +49,7 @@ class SimulatorFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         simulatorBinding = FragmentSimulatorBinding.inflate(inflater, container, false)
         onValidation()
         sliderTracking()

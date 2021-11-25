@@ -23,7 +23,8 @@ class RealEstateFragment : Fragment() {
     private val viewModelFrag: RealEstateViewModel by activityViewModels() {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
-            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository
+            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
+            (requireActivity().application as RealEstateApplication).geocoderRepository
         )
     }
 

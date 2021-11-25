@@ -2,6 +2,7 @@ package com.example.realestatemanager
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.data.repository.PhotoRepository
 import com.example.realestatemanager.data.repository.RealEstateRepository
 import com.example.realestatemanager.ui.create.CreateRealEstateViewModel
@@ -13,7 +14,8 @@ import com.example.realestatemanager.ui.update.UpdateViewModel
 
 class RealEstateViewModelFactory(
     private val realEstateRepository: RealEstateRepository,
-    private val photoRepository: PhotoRepository
+    private val photoRepository: PhotoRepository,
+    private val geocoderRepository: GeocoderRepository
 
 ) : ViewModelProvider.Factory {
 
@@ -25,7 +27,11 @@ class RealEstateViewModelFactory(
             }
             modelClass.isAssignableFrom(CreateRealEstateViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
-                return CreateRealEstateViewModel(realEstateRepository, photoRepository) as T
+                return CreateRealEstateViewModel(
+                    realEstateRepository,
+                    photoRepository,
+                    geocoderRepository
+                ) as T
             }
             modelClass.isAssignableFrom(SimulatorViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
@@ -37,7 +43,11 @@ class RealEstateViewModelFactory(
             }
             modelClass.isAssignableFrom(UpdateViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
-                return UpdateViewModel(realEstateRepository, photoRepository) as T
+                return UpdateViewModel(
+                    realEstateRepository,
+                    photoRepository,
+                    geocoderRepository
+                ) as T
             }
             modelClass.isAssignableFrom(MapViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")

@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.ActivityUpdateBinding
 import com.example.realestatemanager.ui.details.DetailsActivity
 import kotlin.properties.Delegates
@@ -20,7 +21,8 @@ class UpdateActivity : AppCompatActivity() {
     private val viewModel: UpdateViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository
+            photoRepository = (application as RealEstateApplication).photoRepository,
+            GeocoderRepository(context = applicationContext)
         )
     }
     private var idRealEstate by Delegates.notNull<Long>()

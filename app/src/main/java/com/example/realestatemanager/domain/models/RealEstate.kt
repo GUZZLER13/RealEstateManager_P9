@@ -52,17 +52,17 @@ data class RealEstate(
     @ColumnInfo(name = "longitude")
     var longitude: Float?,
 
-//    @ColumnInfo(name = "nearby_store")
-//    var nearbyStore: Boolean?,
-//
-//    @ColumnInfo(name = "nearby_park")
-//    var nearbyPark: Boolean?,
-//
-//    @ColumnInfo(name = "nearby_restaurant")
-//    var nearbyRestaurant: Boolean?,
-//
-//    @ColumnInfo(name = "nearby_school")
-//    var nearbySchool: Boolean?
+    @ColumnInfo(name = "nearby_store")
+    var nearbyStore: Boolean?,
+
+    @ColumnInfo(name = "nearby_park")
+    var nearbyPark: Boolean?,
+
+    @ColumnInfo(name = "nearby_restaurant")
+    var nearbyRestaurant: Boolean?,
+
+    @ColumnInfo(name = "nearby_school")
+    var nearbySchool: Boolean?
 )
 
 

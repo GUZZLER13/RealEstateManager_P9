@@ -2,6 +2,7 @@ package com.example.realestatemanager.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Environment
@@ -24,6 +25,7 @@ import java.io.File
 
 class RealEstateAdapter :
     RecyclerView.Adapter<RealEstateAdapter.ViewHolder>() {
+    var context: Context? = null
     private var indexSelected = -1
     var data = listOf<RealEstateWithPhoto>()
         set(value) {
@@ -37,9 +39,13 @@ class RealEstateAdapter :
             notifyDataSetChanged()
         }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+    }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-
         val binding = ItemRealestateBinding
             .inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
@@ -100,31 +106,91 @@ class RealEstateAdapter :
                 intent.putExtra("idRealEstate", item.realEstate.idRealEstate)
                 viewHolder.context.startActivity(intent)
             }
-
-
         }
-        if (indexSelected == position) {
-            binding.constraintlayoutItemRealestate.setBackgroundColor(
-                ContextCompat.getColor(
-                    viewHolder.context,
-                    R.color.teal_700
-                )
-            )
-            viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FFFAFA"))
-            viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FFFAFA"))
-            viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FFFAFA"))
-            viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FFFAFA"))
-        } else {
-            binding.constraintlayoutItemRealestate.setBackgroundColor(
-                ContextCompat.getColor(
-                    viewHolder.context,
-                    R.color.white
-                )
-            )
-            viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FF3700B3"))
-            viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FF3700B3"))
-            viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FF3700B3"))
-            viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
+
+        //ASPECT POUR THEME SOMBRE
+        when (context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                if (indexSelected == position) {
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.teal_700
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FFFAFA"))
+                } else {
+
+
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.grey
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
+                }
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                if (indexSelected == position) {
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.teal_700
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FFFAFA"))
+                } else {
+
+
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.white
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
+                }
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                if (indexSelected == position) {
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.teal_700
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FFFAFA"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FFFAFA"))
+                } else {
+
+
+                    binding.constraintlayoutItemRealestate.setBackgroundColor(
+                        ContextCompat.getColor(
+                            viewHolder.context,
+                            R.color.white
+                        )
+                    )
+                    viewHolder.binding.textRealEstateCity.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstateType.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.textRealEstatePrice.setTextColor(Color.parseColor("#FF3700B3"))
+                    viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
+                }
+            }
         }
         if (item.photos?.isNotEmpty() == true) {
             val file = File(
@@ -138,6 +204,7 @@ class RealEstateAdapter :
                 .into(binding.imageRealEstate)
         }
 
+
         if (item.realEstate.propertyStatus) {
             binding.textImageRealEstate.setBackgroundResource(R.color.red)
             binding.textImageRealEstate.text = "SOLD"
@@ -146,8 +213,6 @@ class RealEstateAdapter :
             binding.textImageRealEstate.text = "FOR SALE"
 
         }
-
-
     }
 }
 

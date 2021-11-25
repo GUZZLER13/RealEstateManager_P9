@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.OpenableColumns
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.AUTOFILL_HINT_NAME
@@ -29,6 +30,7 @@ import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.FragmentCreateRealEstateBinding
+import com.example.realestatemanager.domain.models.NearbyPOI
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 import com.example.realestatemanager.ui.details.PhotoAdapter
@@ -38,6 +40,7 @@ import com.example.realestatemanager.utils.Notification
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber
 import com.example.realestatemanager.utils.Utils
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream
@@ -66,6 +69,8 @@ class CreateRealEstateFragment : Fragment() {
     private var createInProgress = true
     private var badAddress = false
     private var currencyCode = 0
+    private var nearbyPOI = NearbyPOI()
+
     private var realEstate: RealEstate? = null
 
 
@@ -78,6 +83,7 @@ class CreateRealEstateFragment : Fragment() {
         RealEstateViewModelFactory(
             (activity?.application as RealEstateApplication).realEstateRepository,
             photoRepository = (activity?.application as RealEstateApplication).photoRepository,
+            (activity?.application as RealEstateApplication).geocoderRepository
         )
     }
 
@@ -150,8 +156,33 @@ class CreateRealEstateFragment : Fragment() {
                     if (Utils.checkInternetConnection(requireContext()) || alertDialogNoNetworkSaw) {
                         if (createInProgress) {
                             createInProgress = false
-
-                            insertRealEstate()
+                            getLatLong()
+                            viewModel.liveDataAddress.observe(
+                                viewLifecycleOwner,
+                                Observer { liveDataAddress ->
+                                    if (liveDataAddress.isNullOrEmpty()) {
+                                        viewModel.getNearbyPoi()
+                                        badAddress = true
+                                    } else {
+                                        latlng = liveDataAddress[0]
+                                        Log.d(
+                                            "LatLong geocoder",
+                                            "getLatLong:" + latlng!!.latitude + latlng!!.longitude
+                                        )
+                                        viewModel.getNearbyPoi(
+                                            LatLng(
+                                                latlng!!.latitude,
+                                                latlng!!.longitude
+                                            )
+                                        )
+                                    }
+                                    viewModel.liveDataNearbyPOI.observe(
+                                        viewLifecycleOwner,
+                                        Observer { liveDataNearbyPOI ->
+                                            nearbyPOI = liveDataNearbyPOI
+                                            insertRealEstate()
+                                        })
+                                })
                             viewModel.liveData.observe(
                                 viewLifecycleOwner,
                                 { idRealEstate ->
@@ -199,7 +230,11 @@ class CreateRealEstateFragment : Fragment() {
                     dateSold = null,
                     realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
                     latitude = latlng?.latitude?.toFloat(),
-                    longitude = latlng?.longitude?.toFloat()
+                    longitude = latlng?.longitude?.toFloat(),
+                    nearbyStore = nearbyPOI.nearbyStore,
+                    nearbyPark = nearbyPOI.nearbyPark,
+                    nearbyRestaurant = nearbyPOI.nearbyRestaurant,
+                    nearbySchool = nearbyPOI.nearbySchool
                 )
                 viewModel.insertRealEstate(realEstate)
             }
@@ -226,7 +261,11 @@ class CreateRealEstateFragment : Fragment() {
                     dateSold = null,
                     realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
                     latitude = latlng?.latitude?.toFloat(),
-                    longitude = latlng?.longitude?.toFloat()
+                    longitude = latlng?.longitude?.toFloat(),
+                    nearbyStore = nearbyPOI.nearbyStore,
+                    nearbyPark = nearbyPOI.nearbyPark,
+                    nearbyRestaurant = nearbyPOI.nearbyRestaurant,
+                    nearbySchool = nearbyPOI.nearbySchool
                 )
 
                 viewModel.insertRealEstate(realEstate)
@@ -437,8 +476,14 @@ class CreateRealEstateFragment : Fragment() {
     private fun observeCurrency() {
         viewModel.liveDataCurrencyCode.observe(viewLifecycleOwner, Observer {
             currencyCode = it
+            print("currency = $currencyCode")
             currencyIconSwitchAndDisplay()
 
         })
+    }
+
+    private fun getLatLong() {
+        val address = createBinding.textFieldAdresse.editText?.text.toString()
+        viewModel.getLatLng(address)
     }
 }

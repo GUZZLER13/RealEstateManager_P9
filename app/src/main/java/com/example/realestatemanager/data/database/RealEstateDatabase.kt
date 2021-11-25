@@ -41,5 +41,9 @@ abstract class RealEstateDatabase : RoomDatabase() {
             }
         }
     }
+
+    suspend fun deleteDatabase(realEstateDao: RealEstateDao) {
+        realEstateDao.allDelete()
+    }
 }
 

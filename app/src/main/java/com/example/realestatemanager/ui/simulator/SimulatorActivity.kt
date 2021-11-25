@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.ActivitySimulatorBinding
 import com.example.realestatemanager.ui.home.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -23,7 +24,8 @@ class SimulatorActivity : AppCompatActivity() {
     private val viewModel: SimulatorViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository
+            photoRepository = (application as RealEstateApplication).photoRepository,
+            GeocoderRepository(context = applicationContext)
         )
     }
     private var checkedItem = 0
@@ -57,7 +59,7 @@ class SimulatorActivity : AppCompatActivity() {
         menu.findItem(R.id.realestate_filters)?.isVisible = false
         menu.findItem(R.id.realestate_add)?.isVisible = false
         menu.findItem(R.id.simulator)?.isVisible = false
-        return true;
+        return true
     }
 
     private fun setOnMenuItemClick() {

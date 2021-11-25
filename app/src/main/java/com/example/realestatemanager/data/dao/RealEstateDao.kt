@@ -33,7 +33,13 @@ interface RealEstateDao {
     fun getRealEstateBetweenTwoSurface(
         minSurface: Float,
         maxSurface: Float
-        // For test
+    ): Flow<List<RealEstateWithPhoto>>
+
+    @Transaction
+    @Query("SELECT * FROM REAL_ESTATE_TABLE WHERE price BETWEEN :minPrice AND :maxPrice")
+    fun getRealEstateBetweenTwoPrice(
+        minPrice: Float,
+        maxPrice: Float
     ): Flow<List<RealEstateWithPhoto>>
 
     @Insert

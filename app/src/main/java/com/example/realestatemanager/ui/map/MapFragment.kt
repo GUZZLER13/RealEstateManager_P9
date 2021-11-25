@@ -42,7 +42,8 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private val viewModelMap: MapViewModel by activityViewModels() {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
-            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository
+            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
+            (requireActivity().application as RealEstateApplication).geocoderRepository
         )
     }
     private lateinit var googleMap: GoogleMap
@@ -162,7 +163,10 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun addMarker(googleMap: GoogleMap) {
         bitmapMarker =
-            AppCompatResources.getDrawable(requireContext(), R.drawable.ic_marker_house)!!
+            AppCompatResources.getDrawable(
+                requireContext(),
+                R.drawable.baseline_real_estate_agent_24
+            )!!
                 .toBitmap()
         viewModelMap.livedataListRealEstate.observe(
             viewLifecycleOwner,

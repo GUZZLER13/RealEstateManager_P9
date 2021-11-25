@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
+import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.ActivityMainBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.map.MapActivity
@@ -31,7 +32,8 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: RealEstateViewModel by viewModels() {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository
+            photoRepository = (application as RealEstateApplication).photoRepository,
+            GeocoderRepository(context = applicationContext)
         )
     }
 

@@ -30,6 +30,7 @@ import com.example.realestatemanager.R
 import com.example.realestatemanager.RealEstateApplication
 import com.example.realestatemanager.RealEstateViewModelFactory
 import com.example.realestatemanager.databinding.FragmentUpdateBinding
+import com.example.realestatemanager.domain.models.NearbyPOI
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 import com.example.realestatemanager.domain.relation.RealEstateWithPhoto
@@ -38,6 +39,7 @@ import com.example.realestatemanager.utils.PhotoFileUtils
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.hasText
 import com.example.realestatemanager.utils.TextFieldUtils.Companion.isNumber
 import com.example.realestatemanager.utils.Utils
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.FileOutputStream
@@ -50,7 +52,8 @@ class UpdateFragment : Fragment() {
     private val updateViewModel: UpdateViewModel by activityViewModels() {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
-            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository
+            photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
+            (requireActivity().application as RealEstateApplication).geocoderRepository
         )
     }
     private lateinit var realEstateActual: RealEstateWithPhoto
@@ -67,6 +70,7 @@ class UpdateFragment : Fragment() {
     private var photo = Photo()
     private var changePhoto = false
     private var showDialog = true
+    private var nearbyPOI = NearbyPOI()
     private var alertDialogNoNetworkSaw = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -277,21 +281,32 @@ class UpdateFragment : Fragment() {
 
     private fun onValidationClick() {
         updateBinding.ButtonUpdate.setOnClickListener {
-            if (validate()) {
+            if (validateTextOrNumber()) {
                 if (Utils.checkInternetConnection(requireContext())) {
                     if (updateBinding.textFieldAdresse.editText?.text.toString() != realEstateActual.realEstate.address) {
-
+                        updateViewModel.getLatLng(updateBinding.textFieldAdresse.editText?.text.toString())
                         updateViewModel.liveDataAddress.observe(
                             viewLifecycleOwner,
                             Observer { location ->
                                 if (location.isNullOrEmpty()) {
                                     showDialog = false
                                     alertDialogBadAddressLocation()
-
+                                    updateViewModel.getNearbyPoi()
                                 } else {
                                     latlngAddress = location[0]
-
+                                    updateViewModel.getNearbyPoi(
+                                        LatLng(
+                                            latlngAddress!!.latitude,
+                                            latlngAddress!!.longitude
+                                        )
+                                    )
                                 }
+                                updateViewModel.liveDataNearbyPOI.observe(
+                                    viewLifecycleOwner,
+                                    Observer { liveDataNearbyPOI ->
+                                        nearbyPOI = liveDataNearbyPOI
+                                        updateRealEstate()
+                                    })
 
                             })
                     } else {
@@ -311,13 +326,16 @@ class UpdateFragment : Fragment() {
 
 
     private fun noUpdatePoiAndLocation() {
-
         if (realEstateActual.realEstate.latitude != null && realEstateActual.realEstate.longitude != null) {
             latlngAddress?.latitude =
                 realEstateActual.realEstate.latitude!!.toDouble()
             latlngAddress?.longitude =
                 realEstateActual.realEstate.longitude!!.toDouble()
         }
+        nearbyPOI.nearbyPark = realEstateActual.realEstate.nearbyPark
+        nearbyPOI.nearbyRestaurant = realEstateActual.realEstate.nearbyRestaurant
+        nearbyPOI.nearbySchool = realEstateActual.realEstate.nearbySchool
+        nearbyPOI.nearbyStore = realEstateActual.realEstate.nearbyStore
         updateRealEstate()
     }
 
@@ -342,7 +360,11 @@ class UpdateFragment : Fragment() {
             dateSold = dateSold(),
             realEstateAgent = realEstateActual.realEstate.realEstateAgent,
             latitude = latlngAddress?.latitude?.toFloat(),
-            longitude = latlngAddress?.longitude?.toFloat()
+            longitude = latlngAddress?.longitude?.toFloat(),
+            nearbyStore = nearbyPOI.nearbyStore,
+            nearbyPark = nearbyPOI.nearbyPark,
+            nearbyRestaurant = nearbyPOI.nearbyRestaurant,
+            nearbySchool = nearbyPOI.nearbySchool
         )
 
         //Changement de la bannière sous la photo : sold / to sale
@@ -393,7 +415,7 @@ class UpdateFragment : Fragment() {
         }
     }
 
-    private fun validate(): Boolean {
+    private fun validateTextOrNumber(): Boolean {
         var check = true
         if (!hasText(updateBinding.textFieldAdresse, "This field must be completed")) check = false
         if (!hasText(updateBinding.textFieldType, "This field must be completed")) check = false

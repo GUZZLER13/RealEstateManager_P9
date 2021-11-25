@@ -13,9 +13,9 @@
     <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_gravity="bottom"
-        android:background="@color/purple_700"
+        android:background="@color/purple_500"
         android:gravity="center"
         android:text="@string/photo_title"
         android:textColor="@color/white" />
