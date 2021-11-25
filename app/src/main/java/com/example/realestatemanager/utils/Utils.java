@@ -21,7 +21,7 @@ public class Utils {
      * @return
      */
     private static double getRate() {
-        return 0.859;
+        return 0.89;
     }
 
     /**
