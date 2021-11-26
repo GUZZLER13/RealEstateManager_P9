@@ -41,7 +41,7 @@ public class UtilsInstrumentedTest {
     public void checkWithNetworkOff() throws IOException, InterruptedException {
         device.executeShellCommand("svc wifi disable");
         device.executeShellCommand("svc data disable");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         assertFalse(Utils.checkInternetConnection(appContext));
     }
 

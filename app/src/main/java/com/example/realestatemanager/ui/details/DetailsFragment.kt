@@ -33,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -133,11 +134,15 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     if (location != null) {
                         googleMap.moveCamera(
                             CameraUpdateFactory.newLatLngZoom(// Update UI with location data
-                                com.google.android.gms.maps.model.LatLng(
-                                    location.latitude,
-                                    location.longitude
+                                LatLng(
+//                                    location.latitude,
+//                                    location.longitude
+
+                                        realEstate?.latitude!!.toDouble(),
+                                        realEstate?.longitude!!.toDouble()
                                 ),
-                                13.toFloat()
+                                //ZOOM
+                                14.toFloat()
                             )
                         )
                         stopLocationUpdates()

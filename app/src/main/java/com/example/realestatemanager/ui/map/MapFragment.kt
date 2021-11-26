@@ -115,6 +115,7 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                                     location.latitude,
                                     location.longitude
                                 ),
+                                //ZOOM
                                 13.toFloat()
                             )
                         )
