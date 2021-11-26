@@ -26,7 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class DetailsActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
     private lateinit var detailbinding: ActivityDetailsBinding
-    private val detailsViewModel: DetailsViewModel by viewModels() {
+    private val detailsViewModel: DetailsViewModel by viewModels {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
             photoRepository = (application as RealEstateApplication).photoRepository,

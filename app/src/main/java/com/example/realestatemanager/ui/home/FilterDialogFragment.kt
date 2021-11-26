@@ -43,7 +43,7 @@ class FilterDialogFragment : DialogFragment() {
         onClickDatePicker()
         onClickDatePickerSold()
         onClickValidation()
-        viewModel = ViewModelProvider(requireActivity()).get(RealEstateViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[RealEstateViewModel::class.java]
         return filterBinding.root
     }
 

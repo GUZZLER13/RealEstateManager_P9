@@ -49,7 +49,7 @@ import java.util.*
 class UpdateFragment : Fragment() {
 
     private lateinit var updateBinding: FragmentUpdateBinding
-    private val updateViewModel: UpdateViewModel by activityViewModels() {
+    private val updateViewModel: UpdateViewModel by activityViewModels {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
@@ -60,7 +60,7 @@ class UpdateFragment : Fragment() {
     private lateinit var adapter: PhotoUpdateAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private var latlngAddress: Address? = null
+    private var latLngAddress: Address = Address(null)
     private val datePicker = MaterialDatePicker.Builder.datePicker()
         .setTitleText("Select date of sale")
         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -105,7 +105,7 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateUi() {
-        updateBinding.textFieldAdresse.editText?.setText(realEstateActual.realEstate.address)
+        updateBinding.textFieldAddress.editText?.setText(realEstateActual.realEstate.address)
         updateBinding.textFieldPrice.editText?.setText(realEstateActual.realEstate.price.toString())
         updateBinding.textFieldDescription.editText?.setText(realEstateActual.realEstate.description)
         updateBinding.textFieldNbRooms.editText?.setText(realEstateActual.realEstate.nbRooms.toString())
@@ -129,14 +129,14 @@ class UpdateFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = PhotoUpdateAdapter() {
+        adapter = PhotoUpdateAdapter {
             alertDialogUpdateOrDelete(it)
         }
 
     }
 
-    fun alertDialogUpdateOrDelete(photo: Photo) {
-        var editText = EditText(requireContext())
+    private fun alertDialogUpdateOrDelete(photo: Photo) {
+        val editText = EditText(requireContext())
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
@@ -241,7 +241,7 @@ class UpdateFragment : Fragment() {
     }
 
     private fun alertDialogPhoto() {
-        var editText = EditText(requireContext())
+        val editText = EditText(requireContext())
         editText.setTextColor(
             AppCompatResources.getColorStateList(
                 requireContext(),
@@ -283,8 +283,8 @@ class UpdateFragment : Fragment() {
         updateBinding.ButtonUpdate.setOnClickListener {
             if (validateTextOrNumber()) {
                 if (Utils.checkInternetConnection(requireContext())) {
-                    if (updateBinding.textFieldAdresse.editText?.text.toString() != realEstateActual.realEstate.address) {
-                        updateViewModel.getLatLng(updateBinding.textFieldAdresse.editText?.text.toString())
+                    if (updateBinding.textFieldAddress.editText?.text.toString() != realEstateActual.realEstate.address) {
+                        updateViewModel.getLatLng(updateBinding.textFieldAddress.editText?.text.toString())
                         updateViewModel.liveDataAddress.observe(
                             viewLifecycleOwner,
                             Observer { location ->
@@ -293,11 +293,12 @@ class UpdateFragment : Fragment() {
                                     alertDialogBadAddressLocation()
                                     updateViewModel.getNearbyPoi()
                                 } else {
-                                    latlngAddress = location[0]
+
+                                    latLngAddress = location[0]
                                     updateViewModel.getNearbyPoi(
                                         LatLng(
-                                            latlngAddress!!.latitude,
-                                            latlngAddress!!.longitude
+                                            latLngAddress.latitude,
+                                            latLngAddress.longitude
                                         )
                                     )
                                 }
@@ -327,9 +328,9 @@ class UpdateFragment : Fragment() {
 
     private fun noUpdatePoiAndLocation() {
         if (realEstateActual.realEstate.latitude != null && realEstateActual.realEstate.longitude != null) {
-            latlngAddress?.latitude =
+            latLngAddress.latitude =
                 realEstateActual.realEstate.latitude!!.toDouble()
-            latlngAddress?.longitude =
+            latLngAddress.longitude =
                 realEstateActual.realEstate.longitude!!.toDouble()
         }
         nearbyPOI.nearbyPark = realEstateActual.realEstate.nearbyPark
@@ -354,13 +355,13 @@ class UpdateFragment : Fragment() {
             nbBedrooms = updateBinding.textFieldNbBedrooms.editText?.text.toString()
                 .toInt(),
             description = updateBinding.textFieldDescription.editText?.text.toString(),
-            address = updateBinding.textFieldAdresse.editText?.text.toString(),
+            address = updateBinding.textFieldAddress.editText?.text.toString(),
             propertyStatus = false,
             dateEntry = realEstateActual.realEstate.dateEntry,
             dateSold = dateSold(),
             realEstateAgent = realEstateActual.realEstate.realEstateAgent,
-            latitude = latlngAddress?.latitude?.toFloat(),
-            longitude = latlngAddress?.longitude?.toFloat(),
+            latitude = latLngAddress.latitude.toFloat(),
+            longitude = latLngAddress.longitude.toFloat(),
             nearbyStore = nearbyPOI.nearbyStore,
             nearbyPark = nearbyPOI.nearbyPark,
             nearbyRestaurant = nearbyPOI.nearbyRestaurant,
@@ -417,7 +418,7 @@ class UpdateFragment : Fragment() {
 
     private fun validateTextOrNumber(): Boolean {
         var check = true
-        if (!hasText(updateBinding.textFieldAdresse, "This field must be completed")) check = false
+        if (!hasText(updateBinding.textFieldAddress, "This field must be completed")) check = false
         if (!hasText(updateBinding.textFieldType, "This field must be completed")) check = false
         if (!hasText(
                 updateBinding.textFieldNbBathrooms,

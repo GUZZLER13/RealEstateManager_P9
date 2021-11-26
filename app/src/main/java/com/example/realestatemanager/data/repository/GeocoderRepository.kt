@@ -31,13 +31,13 @@ class GeocoderRepository(private val context: Context) {
 
     fun getNearbyPoi(location: LatLng, placeType: String): Response<Example>? {
         val latLng: String = location.latitude.toString() + "," + location.longitude.toString()
-        var retrofit = Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl("https://maps.googleapis.com/maps/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        var service: RetrofitMaps = retrofit.create(RetrofitMaps::class.java)
-        var call: Call<Example> = service.getNearbyPlaces(placeType, latLng, 1500)
+        val service: RetrofitMaps = retrofit.create(RetrofitMaps::class.java)
+        val call: Call<Example> = service.getNearbyPlaces(placeType, latLng, 1500)
 
         try {
             return call.execute()

@@ -39,7 +39,8 @@ class PhotoAdapter :
 
     }
 
-    class ViewHolder(val binding: ItemPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemPhotoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Photo) {
             val context = binding.root.context
             binding.label.text = item.label

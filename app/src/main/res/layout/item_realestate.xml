@@ -29,17 +29,6 @@
         app:layout_constraintEnd_toStartOf="@id/linear1"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/image_realEstate"-->
-    <!--        android:layout_width="125dp"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@color/teal_700"-->
-    <!--        android:contentDescription="TODO"-->
-    <!--        android:src="@color/black"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="0dp"

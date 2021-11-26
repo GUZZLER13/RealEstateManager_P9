@@ -43,15 +43,15 @@ import java.util.*
 
 class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
-    lateinit var detailsBinding: FragmentDetailsBinding
+    private lateinit var detailsBinding: FragmentDetailsBinding
     lateinit var recyclerView: RecyclerView
     private var adapter = PhotoAdapter()
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    lateinit var bitmapMarker: Bitmap
+    private lateinit var bitmapMarker: Bitmap
     private lateinit var locationCallback: LocationCallback
     private var requestLocationUpdate: Boolean = true
-    private val viewModelDetails: DetailsViewModel by activityViewModels() {
+    private val viewModelDetails: DetailsViewModel by activityViewModels {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
@@ -61,10 +61,6 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private lateinit var googleMap: GoogleMap
     private var currencyCode = 0
     private var realEstate: RealEstate? = null
-
-    companion object {
-        fun newInstance() = DetailsFragment()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,7 +117,6 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
@@ -138,9 +133,11 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 //                                    location.latitude,
 //                                    location.longitude
 
-     //TODO :realEstate.latitude null on update real estate ... WHY ??
-                                        realEstate?.latitude!!.toDouble(),
-                                        realEstate?.longitude!!.toDouble()
+                                    //TODO :realEstate.latitude null on update real estate ... WHY ??
+
+
+                                    realEstate?.latitude!!.toDouble(),
+                                    realEstate?.longitude!!.toDouble()
                                 ),
                                 //ZOOM
                                 14.toFloat()
@@ -296,7 +293,7 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                         val marker = googleMap.addMarker(
                             MarkerOptions()
                                 .position(
-                                    com.google.android.gms.maps.model.LatLng(
+                                    LatLng(
                                         realEstate.latitude!!.toDouble(),
                                         realEstate.longitude!!.toDouble()
                                     )

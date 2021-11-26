@@ -20,11 +20,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class CreateRealEstateActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
     private lateinit var createBinding: CreateRealEstateBinding
-    private val viewModel: CreateRealEstateViewModel by viewModels() {
+    private val viewModel: CreateRealEstateViewModel by viewModels {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
             photoRepository = (application as RealEstateApplication).photoRepository,
-            // ?????????????????????
             GeocoderRepository(context = applicationContext)
         )
     }

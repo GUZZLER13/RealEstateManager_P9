@@ -85,7 +85,7 @@ class RealEstateAdapter :
                 )
                 binding.textRealEstatePrice.text =
                     Utils.convertDollarToEuro(item.realEstate.price).toString()
-            };
+            }
 
         }
         binding.textRealEstateCity.text = item.realEstate.address

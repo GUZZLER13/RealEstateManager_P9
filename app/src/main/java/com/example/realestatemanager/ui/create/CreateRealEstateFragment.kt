@@ -59,7 +59,7 @@ class CreateRealEstateFragment : Fragment() {
     private lateinit var uri: Uri
     private var listPhoto = ArrayList<Photo>()
     private lateinit var notification: Notification
-    private var latlng: Address? = null
+    private var latLng: Address? = Address(null)
     private var photo = Photo()
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
@@ -71,15 +71,12 @@ class CreateRealEstateFragment : Fragment() {
     private var currencyCode = 0
     private var nearbyPOI = NearbyPOI()
 
-    private var realEstate: RealEstate? = null
-
-
     companion object {
         fun newInstance() = CreateRealEstateFragment()
     }
 
 
-    private val viewModel: CreateRealEstateViewModel by viewModels() {
+    private val viewModel: CreateRealEstateViewModel by viewModels {
         RealEstateViewModelFactory(
             (activity?.application as RealEstateApplication).realEstateRepository,
             photoRepository = (activity?.application as RealEstateApplication).photoRepository,
@@ -111,7 +108,7 @@ class CreateRealEstateFragment : Fragment() {
 
     private fun autoFillHints() { // TODO
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // Not supported above
-            createBinding.textFieldAdresse.setAutofillHints(AUTOFILL_HINT_POSTAL_ADDRESS)
+            createBinding.textFieldAddress.setAutofillHints(AUTOFILL_HINT_POSTAL_ADDRESS)
             createBinding.textFieldRealEstateAgent.setAutofillHints(AUTOFILL_HINT_NAME)
         }
     }
@@ -138,7 +135,7 @@ class CreateRealEstateFragment : Fragment() {
             .show()
     }
 
-    private fun alertDialogBadAdresseLocation() {
+    private fun alertDialogBadAddressLocation() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("The address is invalid")
             .setMessage("Some functionality such as the display of marker on the map and nearby points of interest will therefore not be available for this property.")
@@ -164,15 +161,15 @@ class CreateRealEstateFragment : Fragment() {
                                         viewModel.getNearbyPoi()
                                         badAddress = true
                                     } else {
-                                        latlng = liveDataAddress[0]
+                                        latLng = liveDataAddress[0]
                                         Log.d(
                                             "LatLong geocoder",
-                                            "getLatLong:" + latlng!!.latitude + latlng!!.longitude
+                                            "getLatLong:" + latLng!!.latitude + latLng!!.longitude
                                         )
                                         viewModel.getNearbyPoi(
                                             LatLng(
-                                                latlng!!.latitude,
-                                                latlng!!.longitude
+                                                latLng!!.latitude,
+                                                latLng!!.longitude
                                             )
                                         )
                                     }
@@ -224,13 +221,13 @@ class CreateRealEstateFragment : Fragment() {
                     nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
                         .toInt(),
                     description = createBinding.textFieldDescription.editText?.text.toString(),
-                    address = createBinding.textFieldAdresse.editText?.text.toString(),
+                    address = createBinding.textFieldAddress.editText?.text.toString(),
                     propertyStatus = false,
                     dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
                     dateSold = null,
                     realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
-                    latitude = latlng?.latitude?.toFloat(),
-                    longitude = latlng?.longitude?.toFloat(),
+                    latitude = latLng?.latitude?.toFloat(),
+                    longitude = latLng?.longitude?.toFloat(),
                     nearbyStore = nearbyPOI.nearbyStore,
                     nearbyPark = nearbyPOI.nearbyPark,
                     nearbyRestaurant = nearbyPOI.nearbyRestaurant,
@@ -255,13 +252,13 @@ class CreateRealEstateFragment : Fragment() {
                     nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
                         .toInt(),
                     description = createBinding.textFieldDescription.editText?.text.toString(),
-                    address = createBinding.textFieldAdresse.editText?.text.toString(),
+                    address = createBinding.textFieldAddress.editText?.text.toString(),
                     propertyStatus = false,
                     dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
                     dateSold = null,
                     realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
-                    latitude = latlng?.latitude?.toFloat(),
-                    longitude = latlng?.longitude?.toFloat(),
+                    latitude = latLng?.latitude?.toFloat(),
+                    longitude = latLng?.longitude?.toFloat(),
                     nearbyStore = nearbyPOI.nearbyStore,
                     nearbyPark = nearbyPOI.nearbyPark,
                     nearbyRestaurant = nearbyPOI.nearbyRestaurant,
@@ -357,7 +354,7 @@ class CreateRealEstateFragment : Fragment() {
         notification.createNotificationChannel()
         notification.buildNotif()
         if (badAddress) {
-            alertDialogBadAdresseLocation()
+            alertDialogBadAddressLocation()
         } else {
             startMainActivity()
         }
@@ -416,7 +413,7 @@ class CreateRealEstateFragment : Fragment() {
 
     private fun validate(): Boolean {
         var check = true
-        if (!hasText(createBinding.textFieldAdresse, "This field must be completed")) check = false
+        if (!hasText(createBinding.textFieldAddress, "This field must be completed")) check = false
         if (!hasText(createBinding.textFieldType, "This field must be completed")) check = false
         if (!hasText(
                 createBinding.textFieldNbBathrooms, "This field must be completed"
@@ -483,7 +480,7 @@ class CreateRealEstateFragment : Fragment() {
     }
 
     private fun getLatLong() {
-        val address = createBinding.textFieldAdresse.editText?.text.toString()
+        val address = createBinding.textFieldAddress.editText?.text.toString()
         viewModel.getLatLng(address)
     }
 }

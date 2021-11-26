@@ -12,14 +12,14 @@ import com.example.realestatemanager.R
 
 class Notification constructor(context: Context) : ContextWrapper(context) {
 
-    val CHANNEL_ID = "channel1"
-    var notificationId = 1  // Unique ID for notif // Need to check
+    private val CHANNEL_ID = "channel1"
+    private var notificationId = 1  // Unique ID for notif // Need to check
 
 
     fun buildNotif() {
-        var builder =
+        val builder =
             NotificationCompat.Builder(applicationContext, CHANNEL_ID)  //CHANNEL ID for API>=26
-                .setSmallIcon(R.drawable.ic_baseline_add_24) //TODO
+                .setSmallIcon(R.drawable.baseline_real_estate_agent_24) //TODO
                 .setContentTitle("Adding of real estate")
                 .setContentText("The addition of a real estate has been successfully completed")
                 .setStyle(

@@ -4,33 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import com.example.realestatemanager.R
-import com.example.realestatemanager.RealEstateApplication
-import com.example.realestatemanager.RealEstateViewModelFactory
-import com.example.realestatemanager.data.repository.GeocoderRepository
 import com.example.realestatemanager.databinding.ActivityMapBinding
 import com.example.realestatemanager.ui.create.CreateRealEstateActivity
 import com.example.realestatemanager.ui.home.MainActivity
 import com.example.realestatemanager.ui.simulator.SimulatorActivity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class MapActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
     private lateinit var mapbinding: ActivityMapBinding
-    private val mapViewModel: MapViewModel by viewModels() {
-        RealEstateViewModelFactory(
-            (application as RealEstateApplication).realEstateRepository,
-            photoRepository = (application as RealEstateApplication).photoRepository,
-            GeocoderRepository(context = applicationContext)
-        )
-    }
-    private var checkedItem = 0
-    private var idForUpdateIntent: Long? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mapbinding = ActivityMapBinding.inflate(layoutInflater)
@@ -101,34 +88,5 @@ class MapActivity : AppCompatActivity() {
                 else -> false
             }
         }
-    }
-
-    private fun alertDialogCurrency() {
-        val items = arrayOf("Dollar", "Euro")
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Select for convert currency to :")
-            .setNeutralButton("Cancel") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setSingleChoiceItems(items, checkedItem) { _, which ->
-                mapViewModel.setCurrencyCode(which)
-            }
-            .show()
-    }
-
-    private fun observerCurrencyId() {
-        mapViewModel.liveDataCurrencyCode.observe(this, {
-            checkedItem = it
-        })
-    }
-
-
-    private fun idObserver() {
-        mapViewModel.liveDataIdRealEstate.observe(this, {
-            idForUpdateIntent = it
-        })
     }
 }

@@ -33,7 +33,6 @@ class CreateRealEstateViewModel(
         MutableLiveData<List<Address>?>()
     }
 
-
     val liveDataValidation by lazy {
         MutableLiveData<Long>()
     }
@@ -55,7 +54,7 @@ class CreateRealEstateViewModel(
 
     // var PlacesSearchResult: Array<PlacesSearchResult>? = null
 
-    val listPlaceType = listOf(
+    private val listPlaceType = listOf(
         "restaurant",
         "park",
         "school",
@@ -69,7 +68,7 @@ class CreateRealEstateViewModel(
     }
 
     fun getNearbyPoi(location: LatLng? = null) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             val nearbyPoi = NearbyPOI()
             if (location != null) {
                 nearbyPoi.nearbyRestaurant = false
@@ -77,7 +76,7 @@ class CreateRealEstateViewModel(
                 nearbyPoi.nearbySchool = false
                 nearbyPoi.nearbyStore = false
                 for (type in listPlaceType) {
-                    var response: Response<Example>? = withContext(Dispatchers.IO) {
+                    val response: Response<Example>? = withContext(Dispatchers.IO) {
                         geocoderRepository.getNearbyPoi(location = location, type)
                     }
                     for (result in response?.body()?.results!!) {

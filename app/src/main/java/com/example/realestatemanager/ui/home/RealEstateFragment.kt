@@ -20,7 +20,7 @@ class RealEstateFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = RealEstateAdapter()
     private lateinit var realEstateBinding: FragmentRealEstateBinding
-    private val viewModelFrag: RealEstateViewModel by activityViewModels() {
+    private val viewModelFrag: RealEstateViewModel by activityViewModels {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,

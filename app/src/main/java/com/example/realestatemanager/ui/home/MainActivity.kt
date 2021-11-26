@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
 
-    private val viewModel: RealEstateViewModel by viewModels() {
+    private val viewModel: RealEstateViewModel by viewModels {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
             photoRepository = (application as RealEstateApplication).photoRepository,
