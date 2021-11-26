@@ -138,6 +138,7 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 //                                    location.latitude,
 //                                    location.longitude
 
+     //TODO :realEstate.latitude null on update real estate ... WHY ??
                                         realEstate?.latitude!!.toDouble(),
                                         realEstate?.longitude!!.toDouble()
                                 ),
