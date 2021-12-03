@@ -150,13 +150,14 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                                     14.toFloat()
                                 )
                             )
+                            // Demander de modifier l'adresse invalide
+                            Toast.makeText(
+                                context,
+                                "The address is invalid, please update this",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
-                        // Demander de modifier l'adresse invalide
-                        Toast.makeText(
-                            context,
-                            "The address is invalid, please update this",
-                            Toast.LENGTH_LONG
-                        ).show()
+
                         stopLocationUpdates()
                     }
                 }
