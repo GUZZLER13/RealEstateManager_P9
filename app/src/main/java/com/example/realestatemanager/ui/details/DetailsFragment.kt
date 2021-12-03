@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
@@ -127,22 +128,35 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 locationResult ?: return
                 for (location in locationResult.locations) {
                     if (location != null) {
-                        googleMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(// Update UI with location data
-                                LatLng(
-//                                    location.latitude,
-//                                    location.longitude
-
-                                    //TODO :realEstate.latitude null on update real estate ... WHY ??
-
-
-                                    realEstate?.latitude!!.toDouble(),
-                                    realEstate?.longitude!!.toDouble()
-                                ),
-                                //ZOOM
-                                14.toFloat()
+                        if (realEstate?.latitude != null) {
+                            googleMap.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(// Update UI with location data
+                                    LatLng(
+                                        realEstate?.latitude!!.toDouble(),
+                                        realEstate?.longitude!!.toDouble()
+                                    ),
+                                    //ZOOM
+                                    14.toFloat()
+                                )
                             )
-                        )
+                        } else {
+                            googleMap.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(// Update UI with location data
+                                    LatLng(
+                                        location.latitude,
+                                        location.longitude
+                                    ),
+                                    //ZOOM
+                                    14.toFloat()
+                                )
+                            )
+                        }
+                        // Demander de modifier l'adresse invalide
+                        Toast.makeText(
+                            context,
+                            "The address is invalid, please update this",
+                            Toast.LENGTH_LONG
+                        ).show()
                         stopLocationUpdates()
                     }
                 }

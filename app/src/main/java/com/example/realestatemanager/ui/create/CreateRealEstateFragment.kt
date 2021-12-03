@@ -59,7 +59,7 @@ class CreateRealEstateFragment : Fragment() {
     private lateinit var uri: Uri
     private var listPhoto = ArrayList<Photo>()
     private lateinit var notification: Notification
-    private var latLng: Address? = Address(null)
+    private var latLng: Address? = null
     private var photo = Photo()
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
