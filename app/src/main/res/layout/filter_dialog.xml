@@ -43,7 +43,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Region"
+            android:hint="City"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_add_location_24">
 
@@ -125,14 +125,14 @@
                 android:id="@+id/check_nearbyPark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:hint="Nearby Park" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_nearbyStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:hint="Nearby Store" />
         </LinearLayout>
 
@@ -159,7 +159,7 @@
             android:id="@+id/Button_validation_filter"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             android:layout_margin="3dp"
             android:text="Validation filter"
             app:icon="@drawable/ic_baseline_check_24" />

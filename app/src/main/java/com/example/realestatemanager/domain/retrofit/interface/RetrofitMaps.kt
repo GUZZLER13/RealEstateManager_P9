@@ -12,8 +12,8 @@ interface RetrofitMaps {
     @GET("api/place/nearbysearch/json?sensor=true&key=$API_KEY")
     fun getNearbyPlaces(
 
-        @Query("location") location: String?,
         @Query("type") type: String?,
+        @Query("location") location: String?,
         @Query("radius") radius: Int
 
     ): Call<Example>

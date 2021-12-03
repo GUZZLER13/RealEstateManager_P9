@@ -33,10 +33,10 @@ import pub.devrel.easypermissions.EasyPermissions
 
 class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
-    lateinit var mapBinding: FragmentMapBinding
+    private lateinit var mapBinding: FragmentMapBinding
     lateinit var recyclerView: RecyclerView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    lateinit var bitmapMarker: Bitmap
+    private lateinit var bitmapMarker: Bitmap
     private lateinit var locationCallback: LocationCallback
     private var requestLocationUpdate: Boolean = true
     private val viewModelMap: MapViewModel by activityViewModels() {
@@ -184,7 +184,6 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                                 ).icon(BitmapDescriptorFactory.fromBitmap(bitmapMarker))
                         )
                         marker?.tag = realEstate.idRealEstate
-
                     }
                 }
             })
@@ -213,7 +212,6 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             }
         }
     }
-
 
     override fun onResume() {
         super.onResume()
