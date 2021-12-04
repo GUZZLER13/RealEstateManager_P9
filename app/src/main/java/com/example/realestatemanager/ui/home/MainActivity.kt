@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         }
         setupToolbar()
         observerCurrencyId()
-//        setNavigationOnClick()
         showFragments()
         setOnMenuItemClick()
     }
@@ -77,16 +76,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.top_app_bar, menu)
-        menu.findItem(R.id.realestate_update)?.isVisible = false
         return true
     }
-
-//    private fun setNavigationOnClick() {
-//        mToolbar.setNavigationOnClickListener {
-//            // Handle navigation icon press
-//
-//        }
-//    }
 
     private fun setOnMenuItemClick() {
 
