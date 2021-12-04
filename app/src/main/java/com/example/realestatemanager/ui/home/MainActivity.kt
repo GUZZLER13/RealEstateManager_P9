@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
         setupToolbar()
         observerCurrencyId()
-        setNavigationOnClick()
+//        setNavigationOnClick()
         showFragments()
         setOnMenuItemClick()
     }
@@ -81,19 +81,18 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setNavigationOnClick() {
-        mToolbar.setNavigationOnClickListener {
-            // Handle navigation icon press
-
-        }
-    }
+//    private fun setNavigationOnClick() {
+//        mToolbar.setNavigationOnClickListener {
+//            // Handle navigation icon press
+//
+//        }
+//    }
 
     private fun setOnMenuItemClick() {
 
         mToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.realestate_map -> {
-                    //viewModel.insert()
                     val createIntent = Intent(
                         this,
                         MapActivity::class.java
@@ -102,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.realestate_add -> {
-                    //viewModel.insert()
                     val createIntent = Intent(
                         this,
                         CreateRealEstateActivity::class.java

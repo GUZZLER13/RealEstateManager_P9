@@ -3,6 +3,7 @@ package com.example.realestatemanager.ui.create
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.location.Address
 import android.net.Uri
 import android.os.Build
@@ -124,7 +125,6 @@ class CreateRealEstateFragment : Fragment() {
             .show()
     }
 
-
     private fun alertDialogMinPhoto() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Least one photo")
@@ -204,71 +204,42 @@ class CreateRealEstateFragment : Fragment() {
         }
     }
 
-
     private fun insertRealEstate() {
-        when (currencyCode) {
-            Constants.CODE_DOLLAR -> {
-                val realEstate = RealEstate(
-                    type = createBinding.textFieldType.editText?.text.toString(),
-                    price = createBinding.textFieldPrice.editText?.text.toString()
-                        .toInt(),
-                    surface = createBinding.textFieldSurface.editText?.text.toString()
-                        .toInt(),
-                    nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
-                        .toInt(),
-                    nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
-                        .toInt(),
-                    nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
-                        .toInt(),
-                    description = createBinding.textFieldDescription.editText?.text.toString(),
-                    address = createBinding.textFieldAddress.editText?.text.toString(),
-                    propertyStatus = false,
-                    dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
-                    dateSold = null,
-                    realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
-                    latitude = latLng?.latitude?.toFloat(),
-                    longitude = latLng?.longitude?.toFloat(),
-                    nearbyStore = nearbyPOI.nearbyStore,
-                    nearbyPark = nearbyPOI.nearbyPark,
-                    nearbyRestaurant = nearbyPOI.nearbyRestaurant,
-                    nearbySchool = nearbyPOI.nearbySchool
+        val realEstate = RealEstate(
+            type = createBinding.textFieldType.editText?.text.toString(),
+            price = if (currencyCode == Constants.CODE_DOLLAR) {
+                createBinding.textFieldPrice.editText?.text.toString()
+                    .toInt()
+            } else {
+                Utils.convertEurosToDollars(
+                    createBinding.textFieldPrice.editText?.text.toString()
+                        .toInt()
                 )
-                viewModel.insertRealEstate(realEstate)
-            }
-
-            Constants.CODE_EURO -> {
-                val realEstate = RealEstate(
-                    type = createBinding.textFieldType.editText?.text.toString(),
-                    price = Utils.convertEurosToDollars(
-                        createBinding.textFieldPrice.editText?.text.toString()
-                            .toInt()
-                    ),
-                    surface = createBinding.textFieldSurface.editText?.text.toString()
-                        .toInt(),
-                    nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
-                        .toInt(),
-                    nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
-                        .toInt(),
-                    nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
-                        .toInt(),
-                    description = createBinding.textFieldDescription.editText?.text.toString(),
-                    address = createBinding.textFieldAddress.editText?.text.toString(),
-                    propertyStatus = false,
-                    dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
-                    dateSold = null,
-                    realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
-                    latitude = latLng?.latitude?.toFloat(),
-                    longitude = latLng?.longitude?.toFloat(),
-                    nearbyStore = nearbyPOI.nearbyStore,
-                    nearbyPark = nearbyPOI.nearbyPark,
-                    nearbyRestaurant = nearbyPOI.nearbyRestaurant,
-                    nearbySchool = nearbyPOI.nearbySchool
-                )
-
-                viewModel.insertRealEstate(realEstate)
-            }
-        }
+            },
+            surface = createBinding.textFieldSurface.editText?.text.toString()
+                .toInt(),
+            nbRooms = createBinding.textFieldNbRooms.editText?.text.toString()
+                .toInt(),
+            nbBathrooms = createBinding.textFieldNbBathrooms.editText?.text.toString()
+                .toInt(),
+            nbBedrooms = createBinding.textFieldNbBedrooms.editText?.text.toString()
+                .toInt(),
+            description = createBinding.textFieldDescription.editText?.text.toString(),
+            address = createBinding.textFieldAddress.editText?.text.toString(),
+            propertyStatus = false,
+            dateEntry = Utils.getDateInLong(Utils.getTodayDate()),
+            dateSold = null,
+            realEstateAgent = createBinding.textFieldRealEstateAgent.editText?.text.toString(),
+            latitude = latLng?.latitude?.toFloat(),
+            longitude = latLng?.longitude?.toFloat(),
+            nearbyStore = nearbyPOI.nearbyStore,
+            nearbyPark = nearbyPOI.nearbyPark,
+            nearbyRestaurant = nearbyPOI.nearbyRestaurant,
+            nearbySchool = nearbyPOI.nearbySchool
+        )
+        viewModel.insertRealEstate(realEstate)
     }
+
 
     private fun onClickPhoto() {
         createBinding.ButtonAddPhoto.setOnClickListener {
@@ -316,7 +287,6 @@ class CreateRealEstateFragment : Fragment() {
                 }
                 alertDialog()
             }
-
         }
 
     private fun createImageFile(): File {
@@ -330,7 +300,6 @@ class CreateRealEstateFragment : Fragment() {
             storageDir
         )
     }
-
 
     private val getPicture =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -366,31 +335,76 @@ class CreateRealEstateFragment : Fragment() {
         startActivity(intent)
     }
 
-
     private fun alertDialog() {
-        val editText = EditText(requireContext())
-        editText.setTextColor(
-            AppCompatResources.getColorStateList(
-                requireContext(),
-                R.color.white
-            )
-        )
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Enter Photo Name")
-            .setView(editText)
-            .setPositiveButton(requireContext().resources.getString(R.string.validate)) { dialog, _ ->
-                if (!editText.text.isNullOrEmpty()) {
-                    photo.label = editText.text.toString()
-                    listPhoto.add(photo)
-                    viewModel.setPhoto(listPhoto)
-                    photo = Photo()
-                    dialog.dismiss()
-                }
+        when (context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                val editText = EditText(requireContext())
+                editText.setTextColor(
+                    AppCompatResources.getColorStateList(
+                        requireContext(),
+                        R.color.white
+                    )
+                )
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Enter Photo Name")
+                    .setView(editText)
+                    .setPositiveButton(requireContext().resources.getString(R.string.validate)) { dialog, _ ->
+                        if (!editText.text.isNullOrEmpty()) {
+                            photo.label = editText.text.toString()
+                            listPhoto.add(photo)
+                            viewModel.setPhoto(listPhoto)
+                            photo = Photo()
+                            dialog.dismiss()
+                        }
+                    }
+                    .show()
             }
-
-            .show()
+            Configuration.UI_MODE_NIGHT_NO -> {
+                val editText = EditText(requireContext())
+                editText.setTextColor(
+                    AppCompatResources.getColorStateList(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Enter Photo Name")
+                    .setView(editText)
+                    .setPositiveButton(requireContext().resources.getString(R.string.validate)) { dialog, _ ->
+                        if (!editText.text.isNullOrEmpty()) {
+                            photo.label = editText.text.toString()
+                            listPhoto.add(photo)
+                            viewModel.setPhoto(listPhoto)
+                            photo = Photo()
+                            dialog.dismiss()
+                        }
+                    }
+                    .show()
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                val editText = EditText(requireContext())
+                editText.setTextColor(
+                    AppCompatResources.getColorStateList(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Enter Photo Name")
+                    .setView(editText)
+                    .setPositiveButton(requireContext().resources.getString(R.string.validate)) { dialog, _ ->
+                        if (!editText.text.isNullOrEmpty()) {
+                            photo.label = editText.text.toString()
+                            listPhoto.add(photo)
+                            viewModel.setPhoto(listPhoto)
+                            photo = Photo()
+                            dialog.dismiss()
+                        }
+                    }
+                    .show()
+            }
+        }
     }
-
 
     private fun updateRecycler() {
         viewModel.liveDataListPhoto.observe(viewLifecycleOwner, Observer {
@@ -409,7 +423,6 @@ class CreateRealEstateFragment : Fragment() {
         createBinding.recyclerviewPhoto.adapter = adapter
         updateRecycler()
     }
-
 
     private fun validate(): Boolean {
         var check = true

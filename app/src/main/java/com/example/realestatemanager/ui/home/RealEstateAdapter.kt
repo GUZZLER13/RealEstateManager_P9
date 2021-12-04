@@ -211,7 +211,6 @@ class RealEstateAdapter :
         } else {
             binding.textImageRealEstate.setBackgroundResource(R.color.green)
             binding.textImageRealEstate.text = "FOR SALE"
-
         }
     }
 }
