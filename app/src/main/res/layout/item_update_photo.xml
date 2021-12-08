@@ -5,7 +5,6 @@
     android:layout_height="150dp"
     android:layout_margin="3dp">
 
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_view_photo"
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/icon_modif_photo"
         app:backgroundTint="@android:color/transparent"
         app:fabCustomSize="24dp"
         app:srcCompat="@drawable/ic_baseline_mode_edit_24"

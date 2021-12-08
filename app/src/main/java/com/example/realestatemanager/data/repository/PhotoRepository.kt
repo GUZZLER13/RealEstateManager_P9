@@ -8,7 +8,6 @@ import kotlinx.coroutines.withContext
 
 class PhotoRepository(private val photoDao: PhotoDao) {
 
-
     @WorkerThread
     suspend fun insertPhoto(photo: Photo) = withContext(Dispatchers.IO) {
         photoDao.insert(photo)
@@ -21,5 +20,4 @@ class PhotoRepository(private val photoDao: PhotoDao) {
     suspend fun updatePhoto(photo: Photo) {
         photoDao.update(photo)
     }
-
 }

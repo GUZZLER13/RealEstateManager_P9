@@ -1,5 +1,6 @@
 package com.example.realestatemanager.ui.details
 
+import android.annotation.SuppressLint
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,8 +13,8 @@ import java.io.File
 class PhotoAdapter :
     RecyclerView.Adapter<PhotoAdapter.ViewHolder>() {
 
-
     var data = listOf<Photo>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -31,12 +32,10 @@ class PhotoAdapter :
         return ViewHolder(binding)
     }
 
-
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = data[position]
         viewHolder.bind(item)
-
     }
 
     class ViewHolder(private val binding: ItemPhotoBinding) :
@@ -54,7 +53,6 @@ class PhotoAdapter :
                 .dontAnimate()// For photo display correctly
                 .into(binding.imgViewPhoto)
         }
-
     }
 
     override fun getItemCount() = data.size

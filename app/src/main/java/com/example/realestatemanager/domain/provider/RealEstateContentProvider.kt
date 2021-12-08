@@ -36,7 +36,6 @@ class RealEstateContentProvider : ContentProvider() {
                     .RealEstateDao().getRealEstateWithCursor(idRealEstate)
             cursor.setNotificationUri(context!!.contentResolver, uri)
             return cursor
-
         }
         throw IllegalArgumentException("Failed to query row for uri -> $uri")
     }

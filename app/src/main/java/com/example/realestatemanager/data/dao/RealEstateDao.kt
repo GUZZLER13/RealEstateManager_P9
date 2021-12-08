@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RealEstateDao {
 
-
     @Query("SELECT * FROM real_estate_table")
     fun getAll(): Flow<List<RealEstate>>
 
@@ -57,5 +56,4 @@ interface RealEstateDao {
 
     @RawQuery(observedEntities = [RealEstate::class])
     fun getRealEstateWithQuery(query: SupportSQLiteQuery): Flow<List<RealEstateWithPhoto>>
-
 }

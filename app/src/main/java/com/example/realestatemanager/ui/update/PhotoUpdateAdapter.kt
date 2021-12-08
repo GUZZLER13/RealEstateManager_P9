@@ -1,5 +1,6 @@
 package com.example.realestatemanager.ui.update
 
+import android.annotation.SuppressLint
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ class PhotoUpdateAdapter(private val listenerPhoto: (Photo) -> Unit) :
     RecyclerView.Adapter<PhotoUpdateAdapter.ViewHolder>() {
 
     var data = listOf<Photo>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,10 +29,8 @@ class PhotoUpdateAdapter(private val listenerPhoto: (Photo) -> Unit) :
         // Create a new view, which defines the UI of the list item
         val binding = ItemUpdatePhotoBinding
             .inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-
         return ViewHolder(binding, listenerPhoto)
     }
-
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -38,10 +38,11 @@ class PhotoUpdateAdapter(private val listenerPhoto: (Photo) -> Unit) :
         viewHolder.bind(item)
     }
 
-
-    class ViewHolder(val binding: ItemUpdatePhotoBinding, val listenerPhoto: (Photo) -> Unit) :
+    class ViewHolder(
+        private val binding: ItemUpdatePhotoBinding,
+        val listenerPhoto: (Photo) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-
 
         fun bind(item: Photo) {
             val context = binding.root.context
@@ -50,6 +51,7 @@ class PhotoUpdateAdapter(private val listenerPhoto: (Photo) -> Unit) :
                 context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
                 item.path
             )
+
             Glide.with(binding.root)
                 .load(file)
                 .centerCrop()

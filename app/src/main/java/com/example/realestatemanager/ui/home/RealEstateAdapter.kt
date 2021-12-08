@@ -1,5 +1,6 @@
 package com.example.realestatemanager.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -28,12 +29,14 @@ class RealEstateAdapter :
     var context: Context? = null
     private var indexSelected = -1
     var data = listOf<RealEstateWithPhoto>()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     var currency: Int = CODE_DOLLAR
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -56,13 +59,15 @@ class RealEstateAdapter :
         RecyclerView.ViewHolder(binding.root) {
         var context: Context = binding.root.context
         val mainActivity: MainActivity = context as MainActivity
-
     }
-
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onBindViewHolder(
+        viewHolder: ViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         val item = data[position]
         val binding = viewHolder.binding
 
@@ -137,6 +142,7 @@ class RealEstateAdapter :
                     viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
                 }
             }
+
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (indexSelected == position) {
                     binding.constraintlayoutItemRealestate.setBackgroundColor(
@@ -164,6 +170,7 @@ class RealEstateAdapter :
                     viewHolder.binding.imageCurrency.setColorFilter(Color.parseColor("#FF3700B3"))
                 }
             }
+
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 if (indexSelected == position) {
                     binding.constraintlayoutItemRealestate.setBackgroundColor(
@@ -192,6 +199,7 @@ class RealEstateAdapter :
                 }
             }
         }
+
         if (item.photos?.isNotEmpty() == true) {
             val file = File(
                 viewHolder.context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
@@ -204,13 +212,12 @@ class RealEstateAdapter :
                 .into(binding.imageRealEstate)
         }
 
-
         if (item.realEstate.propertyStatus) {
             binding.textImageRealEstate.setBackgroundResource(R.color.red)
-            binding.textImageRealEstate.text = "SOLD"
+            binding.textImageRealEstate.text = context?.getString(R.string.sold_text_item) ?: ""
         } else {
             binding.textImageRealEstate.setBackgroundResource(R.color.green)
-            binding.textImageRealEstate.text = "FOR SALE"
+            binding.textImageRealEstate.text = context?.getString(R.string.for_sale_text_item) ?: ""
         }
     }
 }

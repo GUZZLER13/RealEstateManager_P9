@@ -15,7 +15,6 @@ class RealEstateApplication : MultiDexApplication() {
         lateinit var instance: Application
     }
 
-
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -32,6 +31,4 @@ class RealEstateApplication : MultiDexApplication() {
     private val applicationScope = CoroutineScope(SupervisorJob())
 
     val geocoderRepository by lazy { GeocoderRepository(context = instance) }
-
-
 }

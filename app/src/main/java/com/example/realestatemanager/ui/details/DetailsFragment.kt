@@ -79,7 +79,7 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
         EasyPermissions.requestPermissions(
             this,
-            "You need to accept location permisssions to use this app.",
+            "You need to accept location permissions to use this app.",
             REQUEST_CODE_LOCATION_PERMISSION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
@@ -157,14 +157,12 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                                 Toast.LENGTH_LONG
                             ).show()
                         }
-
                         stopLocationUpdates()
                     }
                 }
             }
         }
     }
-
 
     @SuppressLint("MissingPermission")
     fun startLocationUpdates() {
@@ -315,7 +313,6 @@ class DetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                                 ).icon(BitmapDescriptorFactory.fromBitmap(bitmapMarker))
                         )
                         marker?.tag = realEstate.idRealEstate
-
                     }
                 }
             })

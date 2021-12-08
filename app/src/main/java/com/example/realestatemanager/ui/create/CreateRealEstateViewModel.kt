@@ -109,11 +109,9 @@ class CreateRealEstateViewModel(
         viewModelScope.launch {
             liveDataValidation.value = photoRepository.insertPhoto(photo)
         }
-
     }
 
     fun setPhoto(listPhoto: ArrayList<Photo>) {
         liveDataListPhoto.value = listPhoto
     }
-
 }

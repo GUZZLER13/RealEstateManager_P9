@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.simulator.SimulatorFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="3dp"
-            android:hint="Amount needed"
+            android:hint="@string/amount_needed"
             app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
 
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="3dp"
-            android:hint="Personal contribution"
+            android:hint="@string/personal_contribution"
             app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
 
@@ -55,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="Duration in year : " />
+                android:text="@string/duration_in_year_s" />
 
             <TextView
                 android:id="@+id/textview_duration"
@@ -63,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text=" Default value : 1 (Year)" />
+                android:text="@string/default_value_1_year" />
 
         </LinearLayout>
 
@@ -85,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="3dp"
-            android:hint="Interest rate(excluding insurance)"
+            android:hint="@string/interest_rate_excluding_insurance"
             android:labelFor="@+id/slider_duration"
             app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
@@ -102,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="3dp"
-            android:hint="Insurance rate "
+            android:hint="@string/insurance_rate"
             android:labelFor="@+id/slider_duration"
             app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
@@ -119,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginTop="640dp"
-            android:text="Validation"
+            android:text="@string/validation"
             app:icon="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:text="Monthly payment : " />
+                        android:text="@string/monthly_payment" />
 
                     <TextView
                         android:id="@+id/textview_monthly_payment"
@@ -161,6 +160,7 @@
                         android:id="@+id/currency1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_item_currency"
                         app:srcCompat="@drawable/ic_currency_dollar_black_24dp" />
                 </LinearLayout>
 
@@ -175,7 +175,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:text="Monthly insurance : " />
+                        android:text="@string/monthly_insurance" />
 
                     <TextView
                         android:id="@+id/textview_monthly_insurance"
@@ -188,6 +188,7 @@
                         android:id="@+id/currency2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_item_currency"
                         app:srcCompat="@drawable/ic_currency_dollar_black_24dp" />
                 </LinearLayout>
 
@@ -202,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:text="Total loan amount : " />
+                        android:text="@string/total_loan_amount" />
 
                     <TextView
                         android:id="@+id/textview_total_loan"
@@ -215,6 +216,7 @@
                         android:id="@+id/currency3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_item_currency"
                         app:srcCompat="@drawable/ic_currency_dollar_black_24dp" />
                 </LinearLayout>
             </LinearLayout>

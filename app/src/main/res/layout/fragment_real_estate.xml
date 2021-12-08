@@ -7,7 +7,6 @@
     android:gravity="center"
     tools:context=".ui.home.RealEstateFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_realEstate"
         android:layout_width="match_parent"
@@ -16,6 +15,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/item_realestate" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

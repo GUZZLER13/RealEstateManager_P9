@@ -16,17 +16,15 @@ import com.example.realestatemanager.ui.simulator.SimulatorActivity
 
 class MapActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
-    private lateinit var mapbinding: ActivityMapBinding
+    private lateinit var mapBinding: ActivityMapBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mapbinding = ActivityMapBinding.inflate(layoutInflater)
-        val view = mapbinding.root
+        mapBinding = ActivityMapBinding.inflate(layoutInflater)
+        val view = mapBinding.root
         setContentView(view)
         setupToolbar()
-//        idObserver()
-//        observerCurrencyId()
-//        setOnMenuItemClick()
+
         if (savedInstanceState == null) {
             val bundle = Bundle()
             bundle.putLong("idRealEstate", intent.getLongExtra("idRealEstate", 0))
@@ -37,13 +35,12 @@ class MapActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        mToolbar = mapbinding.materialToolbar
+        mToolbar = mapBinding.materialToolbar
         mToolbar.title = "Map"
         setSupportActionBar(mToolbar)
         setOnMenuItemClick()
         setupBackButton()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -55,7 +52,6 @@ class MapActivity : AppCompatActivity() {
 
         return true
     }
-
 
     private fun setupBackButton() {
         mToolbar.navigationIcon =

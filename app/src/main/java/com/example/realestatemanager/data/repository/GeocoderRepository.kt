@@ -28,7 +28,6 @@ class GeocoderRepository(private val context: Context) {
         }
     }
 
-
     fun getNearbyPoi(location: LatLng, placeType: String): Response<Example>? {
         val latLng: String = location.latitude.toString() + "," + location.longitude.toString()
         val retrofit = Retrofit.Builder()

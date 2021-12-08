@@ -6,6 +6,7 @@ import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
 
 data class RealEstateWithPhoto(
+
     @Embedded val realEstate: RealEstate,
     @Relation(
         parentColumn = "id_realestate",

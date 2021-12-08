@@ -55,5 +55,4 @@ public class Photo {
     public void setWidth(Integer width) {
         this.width = width;
     }
-
 }

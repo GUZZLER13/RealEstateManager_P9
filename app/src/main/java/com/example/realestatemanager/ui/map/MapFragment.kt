@@ -39,7 +39,7 @@ class MapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private lateinit var bitmapMarker: Bitmap
     private lateinit var locationCallback: LocationCallback
     private var requestLocationUpdate: Boolean = true
-    private val viewModelMap: MapViewModel by activityViewModels() {
+    private val viewModelMap: MapViewModel by activityViewModels {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,

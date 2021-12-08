@@ -20,5 +20,4 @@
         android:text="@string/photo_title"
         android:textColor="@color/white" />
 
-
 </FrameLayout>

@@ -34,7 +34,6 @@ class UpdateViewModel(
         MutableLiveData<Long>()
     }
 
-
     lateinit var liveDataRealEstate: LiveData<RealEstateWithPhoto>
 
     fun setId(id: Long) {
@@ -44,7 +43,6 @@ class UpdateViewModel(
     fun getId() {
         liveDataIdRealEstate.value = realEstateRepository.getIdRealEstate().value
     }
-
 
     fun updateRealEstate(realEstate: RealEstate) {
         viewModelScope.launch {
@@ -85,7 +83,7 @@ class UpdateViewModel(
                 nearbyPoi.nearbySchool = false
                 nearbyPoi.nearbyStore = false
                 for (type in listPlaceType) {
-                    var response: Response<Example>? = withContext(Dispatchers.IO) {
+                    val response: Response<Example>? = withContext(Dispatchers.IO) {
                         geocoderRepository.getNearbyPoi(location = location, type)
                     }
 

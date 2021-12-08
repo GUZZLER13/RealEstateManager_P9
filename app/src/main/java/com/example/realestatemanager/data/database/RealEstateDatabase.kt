@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [RealEstate::class, Photo::class], version = 100, exportSchema = false)
 abstract class RealEstateDatabase : RoomDatabase() {
+
     abstract fun RealEstateDao(): RealEstateDao
 
     abstract fun PhotoDao(): PhotoDao
@@ -21,7 +22,6 @@ abstract class RealEstateDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: RealEstateDatabase? = null
-
 
         fun getDatabase(
             context: Context,

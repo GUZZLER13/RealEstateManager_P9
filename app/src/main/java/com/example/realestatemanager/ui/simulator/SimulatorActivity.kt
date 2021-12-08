@@ -21,7 +21,7 @@ class SimulatorActivity : AppCompatActivity() {
 
     private lateinit var mToolbar: Toolbar
     private lateinit var loanBinding: ActivitySimulatorBinding
-    private val viewModel: SimulatorViewModel by viewModels() {
+    private val viewModel: SimulatorViewModel by viewModels {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
             photoRepository = (application as RealEstateApplication).photoRepository,
@@ -64,7 +64,6 @@ class SimulatorActivity : AppCompatActivity() {
 
     private fun setOnMenuItemClick() {
         loanBinding.materialToolbar.setOnMenuItemClickListener { menuItem ->
-            // "When" for update easily
             when (menuItem.itemId) {
                 R.id.currency -> {
                     alertDialogCurrency()

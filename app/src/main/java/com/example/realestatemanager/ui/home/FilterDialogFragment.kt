@@ -37,7 +37,6 @@ class FilterDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         filterBinding = FilterDialogBinding.inflate(inflater, container, false)
-
         // Inflate the layout to use as dialog or embedded fragment
         //return inflater.inflate(R.layout.filter_dialog, container, false)  // Need to check on large screen
         onClickDatePicker()
@@ -56,8 +55,6 @@ class FilterDialogFragment : DialogFragment() {
         // remove the dialog title, but you must call the superclass to get the Dialog.
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-
-
         return dialog
     }
 
@@ -144,5 +141,4 @@ class FilterDialogFragment : DialogFragment() {
         ) check = false
         return check
     }
-
 }

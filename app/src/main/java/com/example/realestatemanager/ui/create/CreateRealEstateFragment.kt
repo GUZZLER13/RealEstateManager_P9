@@ -319,7 +319,7 @@ class CreateRealEstateFragment : Fragment() {
         }
 
 
-    private fun notificationIfAddCorrectly() { //TODO
+    private fun notificationIfAddCorrectly() {
         notification.createNotificationChannel()
         notification.buildNotif()
         if (badAddress) {
@@ -488,7 +488,6 @@ class CreateRealEstateFragment : Fragment() {
             currencyCode = it
             print("currency = $currencyCode")
             currencyIconSwitchAndDisplay()
-
         })
     }
 

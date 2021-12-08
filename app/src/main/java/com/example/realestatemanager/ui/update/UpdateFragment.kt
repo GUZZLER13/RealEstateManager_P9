@@ -308,8 +308,8 @@ class UpdateFragment : Fragment() {
                                         nearbyPOI = liveDataNearbyPOI
                                         updateRealEstate()
                                     })
-
                             })
+
                     } else {
                         noUpdatePoiAndLocation()
                     }
@@ -324,7 +324,6 @@ class UpdateFragment : Fragment() {
         }
         changePhoto = false
     }
-
 
     private fun noUpdatePoiAndLocation() {
         if (realEstateActual.realEstate.latitude != null && realEstateActual.realEstate.longitude != null) {
@@ -482,5 +481,4 @@ class UpdateFragment : Fragment() {
     }
 
     private fun dateSold(): Long? = dateSelectedSold
-
 }

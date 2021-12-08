@@ -16,7 +16,6 @@
         app:menu="@menu/top_app_bar"
         app:titleTextAppearance="@style/ToolbarTitleText" />
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_update"
         android:layout_width="match_parent"

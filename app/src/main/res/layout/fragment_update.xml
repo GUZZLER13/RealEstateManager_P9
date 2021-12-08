@@ -8,7 +8,6 @@
     android:fillViewport="true"
     tools:context=".ui.update.UpdateFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,7 +29,7 @@
                 android:layout_gravity="start"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:hint="Type"
+                android:hint="@string/type"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_home_24">
 
@@ -47,7 +46,7 @@
                 android:layout_gravity="end"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:hint="Address"
+                android:hint="@string/address"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_baseline_add_location_24">
 
@@ -87,7 +86,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Rooms"
+                        android:hint="@string/rooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_room_24">
 
@@ -106,7 +105,7 @@
                         android:layout_gravity="end"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Surface"
+                        android:hint="@string/surface"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_aspect_ratio_24">
 
@@ -133,7 +132,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Bedrooms"
+                        android:hint="@string/bedrooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_bed_24">
 
@@ -152,7 +151,7 @@
                         android:layout_gravity="end"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:hint="Bathrooms"
+                        android:hint="@string/bathrooms"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_bath_24">
 
@@ -172,7 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_margin="3dp"
-            android:hint="Description"
+            android:hint="@string/description"
             app:layout_constraintBottom_toTopOf="@+id/materialCardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +185,6 @@
                 tools:layout_editor_absoluteY="0dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView2"
             android:layout_width="match_parent"
@@ -196,12 +194,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textField_description">
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|top"
-                android:text="Add or Remove picture"
+                android:text="@string/add_or_remove_picture"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -210,6 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end"
                 android:layout_margin="3dp"
+                android:contentDescription="@string/fab_button_click_photo"
                 app:fabSize="mini"
                 app:srcCompat="@drawable/ic_baseline_photo_24" />
 
@@ -219,6 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end|bottom"
                 android:layout_margin="3dp"
+                android:contentDescription="@string/fab_button_folder_photos"
                 android:drawableBottom="@drawable/ic_baseline_folder_upload_24"
                 app:fabSize="mini"
                 app:srcCompat="@drawable/ic_baseline_folder_upload_24" />
@@ -240,7 +239,7 @@
             android:layout_width="162dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:hint="Edit Price"
+            android:hint="@string/edit_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
@@ -258,7 +257,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginEnd="16dp"
-            android:text="Select date of sale"
+            android:text="@string/select_date_of_sale"
             app:icon="@drawable/ic_baseline_calendar_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -270,12 +269,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginTop="640dp"
-            android:text="Validation"
+            android:text="@string/validation"
             app:icon="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Button_date_picker" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

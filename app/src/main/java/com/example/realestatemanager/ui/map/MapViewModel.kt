@@ -7,7 +7,7 @@ import com.example.realestatemanager.domain.relation.RealEstateWithPhoto
 
 class MapViewModel(private val realEstateRepository: RealEstateRepository) : ViewModel() {
 
-    lateinit var liveDataRealEstate: LiveData<RealEstateWithPhoto>
+    private lateinit var liveDataRealEstate: LiveData<RealEstateWithPhoto>
 
     var livedataListRealEstate: LiveData<List<RealEstate>> =
         realEstateRepository.getFlowListRealEstate().asLiveData()
@@ -18,10 +18,9 @@ class MapViewModel(private val realEstateRepository: RealEstateRepository) : Vie
         realEstateRepository.setCurrencyCode(currencyId = currencyId)
     }
 
-    val liveDataIdRealEstate: MutableLiveData<Long> by lazy {
+    private val liveDataIdRealEstate: MutableLiveData<Long> by lazy {
         MutableLiveData<Long>()
     }
-
 
     fun setId(id: Long) {
         liveDataIdRealEstate.value = id
@@ -30,5 +29,4 @@ class MapViewModel(private val realEstateRepository: RealEstateRepository) : Vie
             realEstateRepository.getRealEstateWithId(it).asLiveData()
         }
     }
-
 }

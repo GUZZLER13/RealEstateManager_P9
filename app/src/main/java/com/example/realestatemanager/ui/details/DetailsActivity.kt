@@ -25,7 +25,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class DetailsActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
-    private lateinit var detailbinding: ActivityDetailsBinding
+    private lateinit var detailBinding: ActivityDetailsBinding
+
     private val detailsViewModel: DetailsViewModel by viewModels {
         RealEstateViewModelFactory(
             (application as RealEstateApplication).realEstateRepository,
@@ -33,12 +34,13 @@ class DetailsActivity : AppCompatActivity() {
             GeocoderRepository(context = applicationContext)
         )
     }
+
     private var checkedItem = 0
     private var idForUpdateIntent: Long? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detailbinding = ActivityDetailsBinding.inflate(layoutInflater)
-        val view = detailbinding.root
+        detailBinding = ActivityDetailsBinding.inflate(layoutInflater)
+        val view = detailBinding.root
         setContentView(view)
         setupToolbar()
         idObserver()
@@ -55,7 +57,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        mToolbar = detailbinding.materialToolbar
+        mToolbar = detailBinding.materialToolbar
         mToolbar.title = "Details"
         setSupportActionBar(mToolbar)
         setupBackButton()
@@ -68,7 +70,6 @@ class DetailsActivity : AppCompatActivity() {
         menu.findItem(R.id.realestate_filters)?.isVisible = false
         return true
     }
-
 
     private fun setupBackButton() {
         mToolbar.navigationIcon =
@@ -143,28 +144,22 @@ class DetailsActivity : AppCompatActivity() {
         })
     }
 
-
     private fun idObserver() {
         detailsViewModel.liveDataIdRealEstate.observe(this, {
             idForUpdateIntent = it
         })
     }
-//    android:background="#ededed"
 
     private fun isDark() {
         when (applicationContext?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                detailbinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#C0C0C0"))
-
-
+                detailBinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#C0C0C0"))
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                detailbinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#ededed"))
+                detailBinding.fragmentContainerDetails.setBackgroundColor(Color.parseColor("#ededed"))
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
             }
         }
-
     }
-
 }

@@ -15,7 +15,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Surface minimum"
+            android:hint="@string/surface_minimum"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_aspect_ratio_24">
 
@@ -29,7 +29,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Surface maximum"
+            android:hint="@string/surface_maximum"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_aspect_ratio_24">
 
@@ -43,7 +43,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="City"
+            android:hint="@string/city"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_add_location_24">
 
@@ -57,7 +57,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Price minimum"
+            android:hint="@string/price_minimum"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
 
@@ -71,7 +71,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Price maximum"
+            android:hint="@string/price_maximum"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_money_24">
 
@@ -85,7 +85,7 @@
             style="@style/TextInputLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Number of photos"
+            android:hint="@string/number_of_photos"
             android:padding="2dp"
             app:startIconDrawable="@drawable/ic_baseline_photo_24">
 
@@ -105,13 +105,13 @@
                 android:id="@+id/check_nearbyRestaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Nearby Restaurant" />
+                android:hint="@string/nearby_restaurant" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_nearbySchool"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Nearby School" />
+                android:hint="@string/nearby_school" />
         </LinearLayout>
 
         <LinearLayout
@@ -126,14 +126,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:hint="Nearby Park" />
+                android:hint="@string/nearby_park" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_nearbyStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:hint="Nearby Store" />
+                android:hint="@string/nearby_store" />
         </LinearLayout>
 
 
@@ -142,7 +142,7 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="Publish since"
+            android:text="@string/publish_since"
             app:icon="@drawable/ic_baseline_calendar_24" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -150,18 +150,18 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:text="Sold since"
+            android:text="@string/sold_since"
             app:icon="@drawable/ic_baseline_calendar_24"
 
             />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/Button_validation_filter"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_gravity="bottom|end"
             android:layout_margin="3dp"
-            android:text="Validation filter"
+            android:text="@string/validation_filter"
+            android:textAlignment="center"
             app:icon="@drawable/ic_baseline_check_24" />
 
     </LinearLayout>

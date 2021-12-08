@@ -108,5 +108,4 @@ RealEstateViewModel(
     fun validationUpdateQuery() {
         liveDataRealEstateRequest.value = liveDataRealEstateRequest.value
     }
-
 }

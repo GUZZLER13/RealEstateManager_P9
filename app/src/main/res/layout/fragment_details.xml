@@ -25,7 +25,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="3dp"
-                android:hint="Publiched :"
+                android:hint="@string/published"
                 android:textColorHint="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="3dp"
-                android:hint="Solded :"
+                android:hint="@string/sold"
                 android:textColorHint="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +88,7 @@
             android:layout_height="@dimen/size_recycler_height_item_photo"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="3dp"
             android:orientation="horizontal"
             tools:listitem="@layout/item_photo" />
@@ -98,9 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="3dp"
-            android:hint="Description"
+            android:hint="@string/description"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColorHint="@color/black"
             android:textStyle="bold" />
@@ -112,9 +112,8 @@
             android:layout_height="@dimen/size_description_height_details"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="3dp"
-            android:hint="Default description"
             android:textColor="@color/purple_500" />
 
         <LinearLayout
@@ -140,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Price"
+                        android:hint="@string/price"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_money_24"
@@ -149,7 +148,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
 
                         <TextView
                             android:id="@+id/tw_price"
@@ -157,7 +157,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_marginStart="7dp"
-                            android:hint="150 000"
+                            android:hint="@string/price_example"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textColor="@color/purple_500" />
 
@@ -165,7 +165,7 @@
                             android:id="@+id/currency"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/image_item_currency"
                             app:srcCompat="@drawable/ic_currency_dollar_black_24dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -180,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Surface"
+                        android:hint="@string/surface"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_aspect_ratio_24"
@@ -193,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:hint="120"
+                        android:hint="@string/example_surface"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500" />
 
@@ -211,7 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Rooms"
+                        android:hint="@string/rooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_room_24"
@@ -223,11 +223,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:hint="3"
+                        android:hint="@string/example_nb_rooms"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500" />
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,7 +238,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Bathrooms"
+                        android:hint="@string/bathrooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_bath_24"
@@ -251,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:hint="2"
+                        android:hint="@string/example_nb_bathrooms"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500" />
                 </LinearLayout>
@@ -266,7 +265,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Bedrooms"
+                        android:hint="@string/bedrooms"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 
                         android:textColorHint="@color/black"
@@ -279,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:hint="3"
+                        android:hint="@string/example_nb_bedrooms"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500" />
                 </LinearLayout>
@@ -295,7 +294,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Location"
+                        android:hint="@string/location"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_location_on_24"
@@ -307,7 +306,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="5dp"
-                        android:hint="15 Cours Victor Hugo, Bordeaux"
+                        android:hint="@string/example_address"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500"
                         android:textSize="12sp" />
@@ -323,7 +322,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:hint="Agent"
+                        android:hint="@string/agent"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textColorHint="@color/black"
                         app:drawableLeftCompat="@drawable/ic_baseline_location_on_24"
@@ -335,7 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="7dp"
-                        android:hint="Stef DS"
+                        android:hint="@string/example_name_agent"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@color/purple_500" />
                 </LinearLayout>
@@ -360,7 +359,8 @@
                     android:id="@+id/transparent_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent" />
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/for_code_and_behaviour_mini_map" />
 
             </FrameLayout>
 

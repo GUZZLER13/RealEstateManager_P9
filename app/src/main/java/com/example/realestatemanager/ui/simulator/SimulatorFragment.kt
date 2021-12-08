@@ -29,7 +29,7 @@ class SimulatorFragment : Fragment() {
     private var monthlyPaymentInsurance: Double? = null
     private var totalLoan: Double? = null
 
-    private val viewModelLoan: SimulatorViewModel by activityViewModels() {
+    private val viewModelLoan: SimulatorViewModel by activityViewModels {
         RealEstateViewModelFactory(
             (requireActivity().application as RealEstateApplication).realEstateRepository,
             photoRepository = (requireActivity().application as RealEstateApplication).photoRepository,
@@ -39,10 +39,6 @@ class SimulatorFragment : Fragment() {
 
     companion object {
         fun newInstance() = SimulatorFragment()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -58,7 +54,7 @@ class SimulatorFragment : Fragment() {
         return simulatorBinding.root
     }
 
-    fun onValidation() {
+    private fun onValidation() {
         simulatorBinding.buttonValidation.setOnClickListener {
             if (validation()) {
                 hideShow(true)
@@ -208,12 +204,11 @@ class SimulatorFragment : Fragment() {
         return check
     }
 
-    fun hideShow(visibilty: Boolean) {
-        if (visibilty) {
+    private fun hideShow(visibility: Boolean) {
+        if (visibility) {
             simulatorBinding.cardviewResult.visibility = View.VISIBLE
-        } else if (!visibilty) {
+        } else if (!visibility) {
             simulatorBinding.cardviewResult.visibility = View.GONE
         }
-
     }
 }

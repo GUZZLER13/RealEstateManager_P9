@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         setOnMenuItemClick()
     }
 
-
     private fun showFragments() {
         mFragmentRealEstate = RealEstateFragment()
         supportFragmentManager.beginTransaction()
@@ -160,5 +159,4 @@ class MainActivity : AppCompatActivity() {
             idForUpdateIntent = it
         })
     }
-
 }
