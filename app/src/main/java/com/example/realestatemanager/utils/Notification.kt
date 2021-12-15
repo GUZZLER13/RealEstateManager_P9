@@ -8,15 +8,15 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.realestatemanager.R
+import com.example.realestatemanager.utils.Constants.CHANNEL_ID
 
 
 class Notification constructor(context: Context) : ContextWrapper(context) {
 
-    private val CHANNEL_ID = "channel1"
     private var notificationId = 1  // Unique ID for notif // Need to check
 
 
-    fun buildNotif() {
+    fun buildNotification() {
         val builder =
             NotificationCompat.Builder(applicationContext, CHANNEL_ID)  //CHANNEL ID for API>=26
                 .setSmallIcon(R.drawable.baseline_real_estate_agent_24) //TODO

@@ -104,7 +104,7 @@ class RealEstateAdapter :
                 val bundle = Bundle()
                 bundle.putLong("idRealEstate", item.realEstate.idRealEstate)
                 viewHolder.mainActivity.supportFragmentManager.beginTransaction()
-                    .add(R.id.frame_layout_2, DetailsFragment::class.java, bundle)
+                    .replace(R.id.frame_layout_2, DetailsFragment::class.java, bundle)
                     .commit()
             } else {
                 val intent = Intent(viewHolder.context, DetailsActivity::class.java)

@@ -11,7 +11,7 @@ import com.example.realestatemanager.data.repository.RealEstateRepository
 import com.example.realestatemanager.domain.models.NearbyPOI
 import com.example.realestatemanager.domain.models.Photo
 import com.example.realestatemanager.domain.models.RealEstate
-import com.example.realestatemanager.domain.retrofit.Example
+import com.example.realestatemanager.data.retrofit.Example
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

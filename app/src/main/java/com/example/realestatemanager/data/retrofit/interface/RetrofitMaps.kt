@@ -1,6 +1,6 @@
-package com.example.realestatemanager.domain.retrofit.`interface`
+package com.example.realestatemanager.data.retrofit.`interface`
 
-import com.example.realestatemanager.domain.retrofit.Example
+import com.example.realestatemanager.data.retrofit.Example
 import com.example.realestatemanager.utils.Constants.API_KEY
 import retrofit2.Call
 import retrofit2.http.GET

@@ -3,8 +3,8 @@ package com.example.realestatemanager.data.repository
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import com.example.realestatemanager.domain.retrofit.Example
-import com.example.realestatemanager.domain.retrofit.`interface`.RetrofitMaps
+import com.example.realestatemanager.data.retrofit.Example
+import com.example.realestatemanager.data.retrofit.`interface`.RetrofitMaps
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.model.LatLng
 import retrofit2.Call

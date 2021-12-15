@@ -1,4 +1,4 @@
-package com.example.realestatemanager.domain.retrofit;
+package com.example.realestatemanager.data.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

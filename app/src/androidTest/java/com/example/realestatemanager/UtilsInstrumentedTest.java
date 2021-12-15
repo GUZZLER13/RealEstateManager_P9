@@ -4,7 +4,6 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import android.app.Instrumentation;
 import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;

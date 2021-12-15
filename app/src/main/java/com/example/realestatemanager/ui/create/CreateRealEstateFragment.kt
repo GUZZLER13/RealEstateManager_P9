@@ -321,7 +321,7 @@ class CreateRealEstateFragment : Fragment() {
 
     private fun notificationIfAddCorrectly() {
         notification.createNotificationChannel()
-        notification.buildNotif()
+        notification.buildNotification()
         if (badAddress) {
             alertDialogBadAddressLocation()
         } else {
